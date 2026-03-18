@@ -1,0 +1,6 @@
+@SeedScheduler.Api_HostAddress = http://localhost:5239
+
+GET {{SeedScheduler.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
