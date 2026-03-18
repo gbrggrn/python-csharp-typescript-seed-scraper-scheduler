@@ -1,0 +1,39 @@
+# =========================
+# OS / Editor Files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.vs/
+*.user
+*.suo
+
+# =========================
+# Python (/Scraper)
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# =========================
+# C# .NET (/API)
+# =========================
+bin/
+obj/
+TestResults/
+appsettings.Development.json
+
+# =========================
+# React / Node.js (/Client)
+# =========================
+node_modules/
+dist/
+build/
+.npm/
+npm-debug.log*
+.env.local
+.env.development
