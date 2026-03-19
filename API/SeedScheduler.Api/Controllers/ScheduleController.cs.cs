@@ -1,6 +1,6 @@
-﻿namespace SeedScheduler.Api;
+﻿namespace SeedScheduler.Api.Controllers;
 
-public class ScheduleController.cs
+public class ScheduleController
 {
 
 }
