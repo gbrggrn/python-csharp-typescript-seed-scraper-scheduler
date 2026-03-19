@@ -12,5 +12,6 @@ namespace SeedScheduler.Api.Data
 
         public DbSet<Plant> Plants { get; set; }
         public DbSet<Garden> Gardens { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 		}
 }
