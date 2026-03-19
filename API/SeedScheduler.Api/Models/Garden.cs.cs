@@ -1,6 +1,6 @@
-﻿namespace SeedScheduler.Api;
+﻿namespace SeedScheduler.Api.Models;
 
-public class Garden.cs
+public class Garden
 {
 
 }
