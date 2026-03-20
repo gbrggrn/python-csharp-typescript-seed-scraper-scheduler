@@ -107,4 +107,18 @@ public class PlantService
 
         return true;
     }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        if (id <= 0)
+            return false;
+
+        var plant = await _plants.FindAsync(id);
+        if (plant == null)
+            return false;
+
+        _plants.Remove(plant);
+
+        return true;
+    }
 }
