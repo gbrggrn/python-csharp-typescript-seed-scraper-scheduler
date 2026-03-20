@@ -7,7 +7,7 @@ namespace SeedScheduler.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PlantController : Controller
+public class PlantController : ControllerBase
 {
     private readonly PlantService _plantService;
 
@@ -28,8 +28,8 @@ public class PlantController : Controller
         return Ok();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AddMultiple(List<PlantCreateDTO> plantCreateDTOs)
+    [HttpPost("batch")]
+    public async Task<IActionResult> AddBatch(List<PlantCreateDTO> plantCreateDTOs)
     {
         return Ok();
     }
