@@ -21,9 +21,7 @@ public class PlantService
 
     public async Task<List<PlantResponseDTO>> GetAllAsync()
     {
-        var plants = await _plants.ToListAsync();
-
-        var dtos = plants.Select(p => new PlantResponseDTO
+        var plants = await _plants.Select(p => new PlantResponseDTO
         {
             Id = p.Id,
             Name = p.Name,
@@ -37,9 +35,9 @@ public class PlantService
             MinHarvestMonth = p.MinHarvestMonth,
             MaxHarvestMonth = p.MaxHarvestMonth,
             IsPerennial = p.IsPerennial
-        }).ToList();
+        }).ToListAsync();
 
-        return dtos;
+        return plants;
     }
 
     public async Task AddAsync(PlantCreateDTO dto)
@@ -60,11 +58,13 @@ public class PlantService
         };
 
         await _plants.AddAsync(newPlant);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task AddBatchAsync(List<PlantCreateDTO> dtos)
     {
-        for(int i = 0; i > dtos.Count; i++)
+        var plants = new List<Plant>();
+        for(int i = 0; i < dtos.Count; i++)
         {
             var newPlant = new Plant
             {
@@ -81,8 +81,11 @@ public class PlantService
                 IsPerennial = dtos[i].IsPerennial
             };
 
-            await _plants.AddAsync(newPlant);
+            plants.Add(newPlant);
         }
+
+        _plants.AddRange(plants);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task<bool> UpdateAsync(PlantUpdateDTO dto, int id)
@@ -104,6 +107,7 @@ public class PlantService
         existingPlant.IsPerennial = dto.IsPerennial;
 
         _plants.Update(existingPlant);
+        await _dbContext.SaveChangesAsync();
 
         return true;
     }
@@ -118,6 +122,7 @@ public class PlantService
             return false;
 
         _plants.Remove(plant);
+        await _dbContext.SaveChangesAsync();
 
         return true;
     }
