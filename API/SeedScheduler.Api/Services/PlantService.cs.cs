@@ -21,7 +21,7 @@ public class PlantService
 
     public async Task<List<PlantResponseDTO>> GetAllAsync()
     {
-        var plants = await _plants.Select(p => new PlantResponseDTO
+        return await _plants.Select(p => new PlantResponseDTO
         {
             Id = p.Id,
             Name = p.Name,
@@ -36,8 +36,6 @@ public class PlantService
             MaxHarvestMonth = p.MaxHarvestMonth,
             IsPerennial = p.IsPerennial
         }).ToListAsync();
-
-        return plants;
     }
 
     public async Task AddAsync(PlantCreateDTO dto)
