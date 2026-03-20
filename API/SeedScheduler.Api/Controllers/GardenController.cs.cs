@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SeedScheduler.Api.Models;
 using SeedScheduler.Api.Services;
 using SeedScheduler.Api.Shared.DTOs;
 
@@ -18,30 +19,47 @@ public class GardenController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> ReadAll()
     {
-        return Ok();
+        var response = _gardenService.ReadAllAsync();
+
+        if (response == null)
+            return NotFound("Could not find any Gardens.");
+
+        return Ok(response);
     }
 
     [HttpPost]
     public async Task<IActionResult> Add(GardenCreateDTO gardenCreateDTO)
     {
-        return Ok();
-    }
+        if (gardenCreateDTO == null)
+            return BadRequest("The request body was empty.");
+        
+        await _gardenService.AddAsync(gardenCreateDTO);
 
-    [HttpPost("batch")]
-    public async Task<IActionResult> AddBatch(List<GardenCreateDTO> gardenCreateDTOs)
-    {
-        return Ok();
+        return Ok($"The garden: {gardenCreateDTO.Name} was successfully added.");
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(GardenUpdateDTO gardenUpdateDTO, int id)
     {
-        return Ok();
+        if (gardenUpdateDTO == null)
+            return BadRequest("The request body was empty.");
+
+        if (id <= 0)
+            return BadRequest("The id was <= 0");
+
+        await _gardenService.UpdateAsync(gardenUpdateDTO, id);
+
+        return Ok($"The garden {gardenUpdateDTO.Name} was updated.");
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete (int id)
     {
+        if (id <= 0)
+            return BadRequest("The id was <= 0");
+
+        await _gardenService.DeleteAsync(id);
+        
         return Ok();
     }
 
