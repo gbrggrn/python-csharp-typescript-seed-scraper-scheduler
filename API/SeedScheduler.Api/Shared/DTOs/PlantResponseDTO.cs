@@ -1,8 +1,9 @@
 ﻿namespace SeedScheduler.Api.Shared.DTOs;
 
-public class PlantCreateDTO
+public class PlantResponseDTO
 {
     // Identifiers
+    public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
 
     // Growth properties

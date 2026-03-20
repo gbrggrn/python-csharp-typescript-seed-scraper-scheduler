@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeedScheduler.Api.Services;
+using SeedScheduler.Api.Shared.DTOs;
 
 namespace SeedScheduler.Api.Controllers;
 

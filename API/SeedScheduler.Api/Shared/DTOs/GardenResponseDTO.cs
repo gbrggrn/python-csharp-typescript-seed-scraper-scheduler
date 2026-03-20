@@ -1,6 +1,6 @@
 ﻿namespace SeedScheduler.Api.Shared.DTOs;
 
-public class GardenUpdateDTO
+public class GardenResponseDTO
 {
 
 }
