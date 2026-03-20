@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SeedScheduler.Api.Models;
 using SeedScheduler.Api.Services;
 using SeedScheduler.Api.Shared.DTOs;
 
@@ -18,30 +19,57 @@ public class PlantController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> ReadAll()
     {
-        return Ok();
+        var response = await _plantService.GetAllAsync();
+        if (response == null || response.Count <= 0)
+            return NotFound("No plants found.");
+
+        return Ok(response);
     }
 
     [HttpPost]
     public async Task<IActionResult> Add(PlantCreateDTO plantCreateDTO)
     {
-        return Ok();
+        if (plantCreateDTO == null)
+            return BadRequest("The request body was empty.");
+
+        await _plantService.AddAsync(plantCreateDTO);
+
+        return Ok($"The plant: {plantCreateDTO.Name} was added.");
     }
 
     [HttpPost("batch")]
     public async Task<IActionResult> AddBatch(List<PlantCreateDTO> plantCreateDTOs)
     {
-        return Ok();
+        if (plantCreateDTOs == null || plantCreateDTOs.Count <= 0)
+            return BadRequest("The request body was empty.");
+
+        await _plantService.AddBatchAsync(plantCreateDTOs);
+
+        return Ok("Batch of plants added.");
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(PlantUpdateDTO plantUpdateDTO, int id)
     {
-        return Ok();
+        if (plantUpdateDTO == null)
+            return BadRequest("The request body was empty.");
+
+        if (id <= 0)
+            return BadRequest("The id was <= 0");
+
+        await _plantService.UpdateAsync(plantUpdateDTO, id);
+
+        return Ok($"The plant: {plantUpdateDTO.Name} was updated.");
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete (int id)
     {
-        return Ok();
+        if (id <= 0)
+            return BadRequest("The id was <= 0");
+
+        await _plantService.DeleteAsync(id);
+
+        return Ok("Delete successful.");
     }
 }
