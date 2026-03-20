@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SeedScheduler.Api.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using SeedScheduler.Api.Services;
 
 namespace SeedScheduler.Api.Controllers;
