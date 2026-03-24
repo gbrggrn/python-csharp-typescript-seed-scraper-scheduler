@@ -22,3 +22,28 @@ def harvest_urls(sitemaps, output_filename):
 
 # Initiate harvesting
 harvest_urls(sitemaps, "frobanken-urls.txt")
+
+def filter():
+    filter_unique_types(extract_bulk_urls_from_file("frobanken-urls.txt"))
+
+def extract_bulk_urls_from_file(filename):
+    with open(filename, "r", encoding="utf-8") as file:
+        bulk_urls = file.read()
+
+    return bulk_urls
+
+def filter_unique_types(bulk_urls):
+    types = []
+    urls = bulk_urls.split("\n")
+    for url in urls:
+        name = url.replace(".html", "")
+        split = name.split("/")
+        slug = split[-1]
+        split_slug = slug.split("-")
+        type = split_slug[0]
+        types.append(type)
+    
+    unique_types = set(types)
+    sorted_types = sorted(unique_types)
+
+    return sorted_types
