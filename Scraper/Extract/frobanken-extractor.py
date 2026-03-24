@@ -1,24 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 
-url_one = "https://xn--frbanken-o4a.se/sitemap.xml?urlset=3"
-url_two = "https://xn--frbanken-o4a.se/sitemap.xml?urlset=4"
+# Target sitemaps
+sitemaps = [
+    "https://xn--frbanken-o4a.se/sitemap.xml?urlset=3",
+    "https://xn--frbanken-o4a.se/sitemap.xml?urlset=4"
+]
 
-reqs_one = requests.get(url_one)
-reqs_two = requests.get(url_two)
+# Harvests the urls from the sitemaps
+def harvest_urls(sitemaps, output_filename):
+    # Ready file for writing
+    with open(output_filename, "w", encoding="utf-8") as file:
+        # Fetch the raw xml
+        for sitemap in sitemaps:
+            response = requests.get(sitemap)
+            soup = BeautifulSoup(response.text, 'xml')
 
-soup_one = BeautifulSoup(reqs_one.text, 'xml')
-soup_two = BeautifulSoup(reqs_two.text, 'xml')
+            # Format into urls and write to file
+            for loc in soup.find_all('loc'):
+                file.write(f"{loc.text}\n")
 
-with open("frobanken-urls.txt", "w", encoding="utf-8") as file:
-
-    for url in soup_one.find_all('loc'):
-        data = url.text
-        file.write(data)
-        file.write("\n")
-
-    for url in soup_two.find_all('loc'):
-        data = url.text
-        file.write(data)
-        file.write("\n")
+# Initiate harvesting
+harvest_urls(sitemaps, "frobanken-urls.txt")
