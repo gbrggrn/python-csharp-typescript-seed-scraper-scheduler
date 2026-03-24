@@ -36,6 +36,8 @@ def filter_unique_types(bulk_urls):
     types = []
     urls = bulk_urls.split("\n")
     for url in urls:
+        if url == "":
+            continue
         name = url.replace(".html", "")
         split = name.split("/")
         slug = split[-1]
