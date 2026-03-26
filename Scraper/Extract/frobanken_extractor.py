@@ -29,7 +29,9 @@ def filter():
 
 def extract_bulk_urls_from_file(filename):
     with open(filename, "r", encoding="utf-8") as file:
-        bulk_urls = file.read()
+        raw_urls = file.read()
+
+        bulk_urls = raw_urls.split("\n")
 
     return bulk_urls
 
@@ -54,7 +56,7 @@ def filter_unique_types(bulk_urls):
 def filter_raw_urls(bulk_urls, vegetables):
     vegetable_urls = []
     for url in bulk_urls:
-        if (url in vegetables):
+        if (url.contains(vegetables)):
             vegetable_urls.append(url)
 
     return vegetable_urls
