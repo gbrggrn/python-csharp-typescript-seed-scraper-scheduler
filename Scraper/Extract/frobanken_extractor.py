@@ -55,7 +55,13 @@ def filter_unique_types(bulk_urls):
 def filter_raw_urls(bulk_urls, vegetables):
     vegetable_urls = []
     for url in bulk_urls:
-        if (url.contains(vegetables)):
+        if url == "":
+            continue
+
+        slug = url.split("/")[-1]
+        type = slug.split("-")[0].replace(".html", "")
+
+        if type in vegetables:
             vegetable_urls.append(url)
 
     return vegetable_urls
