@@ -37,8 +37,7 @@ def extract_bulk_urls_from_file(filename):
 
 def filter_unique_types(bulk_urls):
     types = []
-    urls = bulk_urls.split("\n")
-    for url in urls:
+    for url in bulk_urls:
         if url == "":
             continue
         name = url.replace(".html", "")
