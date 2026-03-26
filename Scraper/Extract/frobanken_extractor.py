@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from ollama_client import generate_filtered_list
 
 # Target sitemaps
 sitemaps = [
@@ -49,3 +50,4 @@ def filter_unique_types(bulk_urls):
     sorted_types = sorted(unique_types)
 
     return sorted_types
+
