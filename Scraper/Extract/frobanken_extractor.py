@@ -69,7 +69,7 @@ def filter_raw_urls(bulk_urls, vegetables):
 def save_filtered_urls(filename, vegetable_urls):
     with open(filename, 'w', encoding = "utf-8") as file:
         for url in vegetable_urls:
-            file.write(url)
+            file.write(f"{url}\n")
 
 def filter_and_save_clean_urls():
     save_filtered_urls("frobanken-veg-urls.txt", 
