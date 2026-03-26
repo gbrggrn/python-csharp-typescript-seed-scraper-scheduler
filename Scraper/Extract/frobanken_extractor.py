@@ -22,10 +22,10 @@ def harvest_urls(sitemaps, output_filename):
                 file.write(f"{loc.text}\n")
 
 # Initiate harvesting
-harvest_urls(sitemaps, "frobanken-urls.txt")
+harvest_urls(sitemaps, "frobanken-raw-urls.txt")
 
 def filter():
-    filter_unique_types(extract_bulk_urls_from_file("frobanken-urls.txt"))
+    filter_unique_types(extract_bulk_urls_from_file("frobanken-raw-urls.txt"))
 
 def extract_bulk_urls_from_file(filename):
     with open(filename, "r", encoding="utf-8") as file:
@@ -51,3 +51,8 @@ def filter_unique_types(bulk_urls):
 
     return sorted_types
 
+def save_filtered_urls(filename):
+    with open(filename, 'w', encoding = "utf-8") as file:
+        file.write(generate_filtered_list(filter()))
+
+save_filtered_urls("frobanken-filtered-urls.txt")
