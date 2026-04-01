@@ -86,6 +86,6 @@ def month_helper(month):
     }
 
     if month in months_values:
-        return months_values.values[month]
+        return months_values[month]
     else:
         return 0
