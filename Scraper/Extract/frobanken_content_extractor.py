@@ -8,6 +8,21 @@ def retrieve_urls_from_file(filename):
     return url_list
 
 def extract_content_from_urls(url_list):
+    extracted_DTOs = []
+
+    name = ""
+    sow_depth = ""
+    min_germination_days = ""
+    max_germination_days = ""
+    min_height = ""
+    max_height = ""
+    row_spacing = ""
+    plant_spacing = ""
+    min_sow_month = ""
+    max_sow_month = ""
+    min_harvest = ""
+    max_harvest = ""
+    
     for url in url_list:
         if not url:
             continue
@@ -25,21 +40,6 @@ def extract_content_from_urls(url_list):
         clean_text = description_text.get_text(separator='\n')
 
         lines = clean_text.split('\n')
-
-        extracted_DTOs = []
-
-        name = ""
-        sow_depth = ""
-        min_germination_days = ""
-        max_germination_days = ""
-        min_height = ""
-        max_height = ""
-        row_spacing = ""
-        plant_spacing = ""
-        min_sow_month = ""
-        max_sow_month = ""
-        min_harvest = ""
-        max_harvest = ""
 
         for line in lines:
             if "Sådjup:" in line:
@@ -66,7 +66,7 @@ def extract_content_from_urls(url_list):
                 max_sow_month = month_helper(max_month_str)
             if "Skördeperiod:" in line:
                 min_harvest_str = line.split(":")[1].split("–")[0].strip()
-                max_harvest_str = line.split(":")[1].split("–")[0].strip()
+                max_harvest_str = line.split(":")[1].split("–")[1].strip()
 
                 min_harvest = month_helper(min_harvest_str)
                 max_harvest = month_helper(max_harvest_str)
