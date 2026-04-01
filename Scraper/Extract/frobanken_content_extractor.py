@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup as BS
 import requests
+import random
+import time
 
 def retrieve_urls_from_file(filename):
     with open(filename, 'r', encoding = "utf-8") as file:
@@ -87,6 +89,8 @@ def extract_content_from_urls(url_list):
         }
 
         extracted_DTOs.append(DTO)
+        
+        time.sleep(random.uniform(1.5, 3.0))
 
     return extracted_DTOs
 
