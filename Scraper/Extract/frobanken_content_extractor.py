@@ -48,8 +48,12 @@ def extract_content_from_urls(url_list):
                 min_germination_days = line.split(":")[1].split("–")[0].strip()
                 max_germination_days = line.split(":")[1].split("–")[1].split(" ")[0].strip()
             if "Höjd:" in line:
-                min_height = line.split(":")[1].split("–")[0].strip()
-                max_height = line.split(":")[1].split("–")[1].split(" ")[0].strip()
+                min_height_split = line.split(":")[1]
+                if "–" in min_height_split:
+                    min_height = min_height_split.split("–")[0].strip()
+                    max_height = min_height_split.split("–")[1].strip()
+                else:
+                    min_height = min_height_split.split(" ")[0].strip()
             if "Radavstånd:" in line:
                 row_spacing = line.split(":")[1].split(" ")[0].strip()
             if "Plantavstånd:" in line:
