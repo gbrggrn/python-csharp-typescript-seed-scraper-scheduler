@@ -29,35 +29,28 @@ def extract_content_from_urls(url_list):
         for line in lines:
             if "Sådjup:" in line:
                 sow_depth = line.split(":")[1].strip()
-                break
             if "Grotid:" in line:
                 min_germination_days = line.split(":")[1].split("-")[0].strip()
                 max_germination_days = line.split(":")[1].split("-")[1].split(" ")[0].strip()
-                break
             if "Höjd:" in line:
                 min_height = line.split(":")[1].split("-")[0].strip()
                 max_height = line.split(":")[1].split("-")[1].split(" ")[0].strip()
-                break
             if "Radavstånd:" in line:
                 row_spacing = line.split(":")[1].split(" ")[0].strip()
-                break
             if "Plantavstånd:" in line:
                 plant_spacing = line.split(":")[1].split(" ")[0].strip()
-                break
             if "Såperiod:" in line:
                 min_month_str = line.split(":")[1].split("-")[0].strip()
                 max_month_str = line.split(":")[1].split("-")[1].strip()
 
                 min_sow_month = month_helper(min_month_str)
                 max_sow_month = month_helper(max_month_str)
-                break
             if "Skördeperiod:" in line:
                 min_harvest_str = line.split(":")[1].split("-")[0].strip()
                 max_harvest_str = line.split(":")[1].split("-")[0].strip()
 
                 min_harvest = month_helper(min_harvest_str)
                 max_harvest = month_helper(max_harvest_str)
-                break
 
     DTO = {
         "name": name,
@@ -96,5 +89,3 @@ def month_helper(month):
         return months_values.values[month]
     else:
         return 0
-            
-
