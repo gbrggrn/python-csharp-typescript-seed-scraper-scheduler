@@ -3,6 +3,9 @@ import requests
 import random
 import time
 
+def extract():
+    return extract_content(retrieve_urls_from_file("frobanken-veg-urls.txt"))
+
 def retrieve_urls_from_file(filename):
     with open(filename, 'r', encoding = "utf-8") as file:
         url_list = file.read().splitlines()
@@ -35,6 +38,3 @@ def extract_content(url_list):
         time.sleep(random.uniform(1.5, 3.0))
     
     return data
-    
-def extract():
-    return extract_content(retrieve_urls_from_file("frobanken-veg-urls.txt"))
