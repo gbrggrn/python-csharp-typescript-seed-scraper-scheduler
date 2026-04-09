@@ -1,11 +1,16 @@
 from Transform.frobanken_transformer import transform
 import json
+import requests
+
+url = "http://localhost:5239"
 
 def load():
     data = transform()
+    successes = 0;
+    fails = 0;
 
     for object in data:
-        json.dumps({
+        payload = json.dumps({
             "name": object.name,
             "sow_depth": object.sow_depth,
             "min_germination_days": object.min_germination_days,
@@ -20,4 +25,12 @@ def load():
             "max_harvest": object.max_harvest
         })
 
+        response = requests.post(url, json = payload)
+
+        if response != 200:
+            print(f"Something went wrong. Code: {response}")
+            fails = fails + 1
         
+        successes = successes + 1
+
+    print(f"Loading finished.\nSuccesses: {successes}\nFails: {fails}")
