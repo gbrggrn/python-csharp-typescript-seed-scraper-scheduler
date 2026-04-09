@@ -1,3 +1,10 @@
+from Extract.frobanken_content_extractor import extract
+
+def transform():
+    DTOs = extract_DTOs_from_data(extract())
+
+    return DTOs
+
 def extract_DTOs_from_data(data):
     extracted_DTOs = []
 
