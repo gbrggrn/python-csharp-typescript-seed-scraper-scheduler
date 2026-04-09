@@ -24,14 +24,15 @@ def extract_content(url_list):
         response = requests.get(url)
         soup = BS(response.text, 'html.parser')
 
-        name = soup.select_one('.tws-article-name h1').text
-        print(name)
+        name = soup.select_one('.tws-article-name h1').text.strip()
+        print(f"Scraped veg: {name}")
 
         description_text = soup.select_one('.tws-article-description-text')
 
         clean_text = description_text.get_text(separator='\n')
 
         lines = clean_text.split('\n')
+        lines.append(f"\nName: {name}")
 
         data.append(lines)
 

@@ -21,7 +21,7 @@ def extract_DTOs_from_data(data):
         max_sow_month = ""
         min_harvest = ""
         max_harvest = ""
-        
+
         for line in lines:
             if "Sådjup:" in line:
                 sow_depth = line.split(":")[1].strip()
@@ -51,6 +51,8 @@ def extract_DTOs_from_data(data):
 
                 min_harvest = month_helper(min_harvest_str)
                 max_harvest = month_helper(max_harvest_str)
+            if "Name:" in line:
+                name = line.split(":")[1].strip()
 
         DTO = {
             "name": name,
