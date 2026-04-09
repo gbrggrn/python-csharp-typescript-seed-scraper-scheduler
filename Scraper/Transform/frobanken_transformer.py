@@ -7,21 +7,21 @@ def transform():
 
 def extract_DTOs_from_data(data):
     extracted_DTOs = []
-
-    name = ""
-    sow_depth = ""
-    min_germination_days = ""
-    max_germination_days = ""
-    min_height = ""
-    max_height = ""
-    row_spacing = ""
-    plant_spacing = ""
-    min_sow_month = ""
-    max_sow_month = ""
-    min_harvest = ""
-    max_harvest = ""
     
     for lines in data:
+        name = ""
+        sow_depth = ""
+        min_germination_days = ""
+        max_germination_days = ""
+        min_height = ""
+        max_height = ""
+        row_spacing = ""
+        plant_spacing = ""
+        min_sow_month = ""
+        max_sow_month = ""
+        min_harvest = ""
+        max_harvest = ""
+        
         for line in lines:
             if "Sådjup:" in line:
                 sow_depth = line.split(":")[1].strip()
