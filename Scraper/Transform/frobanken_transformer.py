@@ -1,4 +1,4 @@
-def extract_content_from_urls(url_list):
+def extract_DTOs_from_data(data):
     extracted_DTOs = []
 
     name = ""
@@ -14,24 +14,7 @@ def extract_content_from_urls(url_list):
     min_harvest = ""
     max_harvest = ""
     
-    for url in url_list:
-        if not url:
-            continue
-
-        print(f"Now scraping: {url}")
-
-        response = requests.get(url)
-        soup = BS(response.text, 'html.parser')
-
-        name = soup.select_one('.tws-article-name h1').text
-        print(name)
-
-        description_text = soup.select_one('.tws-article-description-text')
-
-        clean_text = description_text.get_text(separator='\n')
-
-        lines = clean_text.split('\n')
-
+    for lines in data:
         for line in lines:
             if "Sådjup:" in line:
                 sow_depth = line.split(":")[1].strip()
@@ -78,8 +61,6 @@ def extract_content_from_urls(url_list):
         }
 
         extracted_DTOs.append(DTO)
-        
-        time.sleep(random.uniform(1.5, 3.0))
 
     return extracted_DTOs
 
