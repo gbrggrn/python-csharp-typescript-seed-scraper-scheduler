@@ -15,7 +15,7 @@ def generate_filtered_list(sorted_types):
     }
 
     try:
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=payload, timeout=60)
         response.raise_for_status()
 
         raw_text = response.json()['response']
