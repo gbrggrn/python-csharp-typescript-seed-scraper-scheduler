@@ -51,11 +51,9 @@ def extract_DTOs_from_data(data):
 
                 min_harvest = month_helper(min_harvest_str)
                 max_harvest = month_helper(max_harvest_str)
-            if "Name:" in line:
-                name = line.split(":")[1].strip()
 
         DTO = {
-            "name": name,
+            "name": data["name"],
             "sow_depth": sow_depth,
             "min_germination_days": min_germination_days,
             "max_germination_days": max_germination_days,
