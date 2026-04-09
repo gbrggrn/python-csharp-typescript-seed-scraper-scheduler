@@ -18,6 +18,8 @@ __pycache__/
 venv/
 env/
 .env
+frobanken-veg-urls.txt
+frobanken-raw-urls.txt
 
 # =========================
 # C# .NET (/API)
