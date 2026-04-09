@@ -7,7 +7,6 @@ def extract_DTOs_from_data(data):
     extracted_DTOs = []
     
     for plant_dict in data:
-        name = ""
         sow_depth = ""
         min_germination_days = ""
         max_germination_days = ""

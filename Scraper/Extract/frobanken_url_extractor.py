@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from ollama_client import generate_filtered_list
+from Extract.ollama_client import generate_filtered_list
 
 # Target sitemaps
 sitemaps = [
@@ -20,6 +20,7 @@ def harvest_urls(sitemaps, output_filename):
             # Format into urls and write to file
             for loc in soup.find_all('loc'):
                 file.write(f"{loc.text}\n")
+    print("[url_extractor] URLs harvested from sitemaps...")
 
 # Initiate harvesting
 harvest_urls(sitemaps, "frobanken-raw-urls.txt")

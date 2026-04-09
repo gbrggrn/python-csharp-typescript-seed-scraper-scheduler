@@ -9,6 +9,8 @@ print("==========\nRetrieving URLs...\n==========")
 savefile = Path("C:\\Users\\gusta\\source\\repos\\Random\\python-csharp-typescript-seed-scraper-scheduler\\Scraper\\Extract\\frobanken-raw-urls.txt")
 if not savefile.exists():
     filter_and_save_clean_urls()
+else:
+    print(f"[scraper] RAW-URLs already extracted. Continuing...")
 
 print("==========\nExtracting data...\n==========")
 data = extract()
