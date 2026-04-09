@@ -75,5 +75,3 @@ def filter_and_save_clean_urls():
     save_filtered_urls("frobanken-veg-urls.txt", 
                        filter_raw_urls(extract_bulk_urls_from_file("frobanken-raw-urls.txt"), 
                                        generate_filtered_list(filter())))
-
-filter_and_save_clean_urls()

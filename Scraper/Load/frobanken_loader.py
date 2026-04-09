@@ -1,11 +1,8 @@
-from Transform.frobanken_transformer import transform
-import json
 import requests
 
 url = "http://localhost:5239/api/Plant"
 
-def load():
-    data = transform()
+def load(data):
     successes = 0
     fails = 0
 
