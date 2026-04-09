@@ -114,3 +114,6 @@ def month_helper(month):
         return months_values[month]
     else:
         return 0
+    
+def extract():
+    return extract_content_from_urls(retrieve_urls_from_file("frobanken-veg-urls.txt"))
