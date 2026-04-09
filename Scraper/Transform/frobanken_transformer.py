@@ -8,7 +8,7 @@ def transform():
 def extract_DTOs_from_data(data):
     extracted_DTOs = []
     
-    for lines in data:
+    for plant_dict in data:
         name = ""
         sow_depth = ""
         min_germination_days = ""
@@ -22,7 +22,7 @@ def extract_DTOs_from_data(data):
         min_harvest = ""
         max_harvest = ""
 
-        for line in lines:
+        for line in plant_dict:
             if "Sådjup:" in line:
                 sow_depth = line.split(":")[1].strip()
             if "Grotid:" in line:
@@ -53,7 +53,7 @@ def extract_DTOs_from_data(data):
                 max_harvest = month_helper(max_harvest_str)
 
         DTO = {
-            "name": data["name"],
+            "name": plant_dict["name"],
             "sow_depth": sow_depth,
             "min_germination_days": min_germination_days,
             "max_germination_days": max_germination_days,
