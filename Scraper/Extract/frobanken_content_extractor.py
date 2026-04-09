@@ -53,6 +53,8 @@ def extract_content(url_list):
 
         data.append(object)
 
-        time.sleep(random.uniform(1.5, 3.0))
+        break
+
+        # time.sleep(random.uniform(1.5, 3.0))
     
     return data

@@ -21,6 +21,7 @@ def generate_filtered_list(sorted_types):
         raw_text = response.json()['response']
         clean_list = json.loads(raw_text)
 
+        print(f"Success!\n{clean_list}")
         return clean_list
     except requests.exceptions.RequestException as e:
         print(f"Network error: {e}")
