@@ -24,17 +24,34 @@ def extract_content(url_list):
         response = requests.get(url)
         soup = BS(response.text, 'html.parser')
 
-        name = soup.select_one('.tws-article-name h1').text.strip()
+        name_element = soup.select_one('.tws-article-name h1')
+
+        if not name_element:
+            print(f"Name not found for: {url}")
+            continue
+
+        name = name_element.text.strip()
         print(f"Scraped veg: {name}")
 
-        description_text = soup.select_one('.tws-article-description-text')
+        description_element = soup.select_one('.tws-article-description-text')
 
-        clean_text = description_text.get_text(separator='\n')
+        if not description_element:
+            print(f"Description not found for: {url}")
+            continue
+
+        print(f"Description scraped for: {name}")
+
+        clean_text = description_element.get_text(separator='\n')
 
         lines = clean_text.split('\n')
         lines.append(f"\nName: {name}")
 
-        data.append(lines)
+        object = {
+            "name": name,
+            "lines": lines
+        }
+
+        data.append(object)
 
         time.sleep(random.uniform(1.5, 3.0))
     
