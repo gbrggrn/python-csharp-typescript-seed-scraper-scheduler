@@ -36,7 +36,7 @@ def request_filtering(types):
 
     try:
         print(f"[ollama_client] Awaiting llama3.1 response...")
-        response = requests.post(url, json=payload, timeout=60)
+        response = requests.post(url, json=payload, timeout=120)
         response.raise_for_status()
 
         raw_text = response.json()['response']
