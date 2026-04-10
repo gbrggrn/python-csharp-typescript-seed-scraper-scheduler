@@ -19,7 +19,7 @@ def extract_content(url_list):
         if not url:
             continue
 
-        print(f"Now scraping: {url}")
+        print(f"[content-extractor] Now scraping: {url}")
 
         response = requests.get(url)
         soup = BS(response.text, 'html.parser')
@@ -36,10 +36,10 @@ def extract_content(url_list):
         description_element = soup.select_one('.tws-article-description-text')
 
         if not description_element:
-            print(f"Description not found for: {url}")
+            print(f"[content-extractor] Description not found for: {url}")
             continue
 
-        print(f"Description scraped for: {name}")
+        print(f"[content-extractor] Description scraped for: {name}")
 
         clean_text = description_element.get_text(separator='\n')
 
