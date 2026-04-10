@@ -26,12 +26,15 @@ def extract_content(url_list):
 
         print(f"[content-extractor] Now scraping: {url}")
 
-        response = requests.get(url)
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0"}
+        response = requests.get(url, headers=headers)
+
         print(f"Status: {response.status_code} | Length: {len(response.text)}")
         soup = BS(response.text, 'lxml')
         print(f"Page Title: {soup.title.string if soup.title else 'No Title'}")
+        print(f"H1 Count: {len(soup.find_all('h1'))}")
 
-        name_element = soup.select_one('.tws-article-name h1')
+        name_element = soup.find('h1')
 
         if not name_element:
             print(f"Name not found for: {url}")
