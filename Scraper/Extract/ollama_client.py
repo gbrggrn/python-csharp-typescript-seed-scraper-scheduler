@@ -31,7 +31,10 @@ def request_filtering(types):
         "model": model,
         "prompt": f"{prompt} List: {types}",
         "stream": False,
-        "format": "json"
+        "format": "json",
+        "options": {
+            "temperature": 0
+        }
     }
 
     try:
