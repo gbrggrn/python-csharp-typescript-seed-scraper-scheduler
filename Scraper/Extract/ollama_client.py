@@ -42,13 +42,13 @@ def request_filtering(types):
         raw_text = response.json()['response']
         clean_list = json.loads(raw_text)
 
-        print(f"Success!\n{clean_list}")
+        print(f"[ollama-client] Success!\n{clean_list}")
         return clean_list
     except requests.exceptions.RequestException as e:
-        print(f"Network error: {e}")
+        print(f"[ollama-client] Network error: {e}")
         return []
     except json.JSONDecodeError:
-        print("Ollama ignored the JSON format command.")
+        print("[ollama-client] Ollama ignored the JSON format command.")
         return []
     
 def chunk_types(types, n):
