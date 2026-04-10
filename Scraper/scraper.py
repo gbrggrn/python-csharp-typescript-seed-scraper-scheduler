@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Extract URLs
 print("==========\nRetrieving URLs...\n==========")
-savefile = Path("C:\\Users\\gusta\\source\\repos\\Random\\python-csharp-typescript-seed-scraper-scheduler\\Scraper\\Extract\\frobanken-raw-urls.txt")
+savefile = Path("C:\\Users\\gusta\\source\\repos\\Random\\python-csharp-typescript-seed-scraper-scheduler\\Scraper\\frobanken-raw-urls.txt")
 if not savefile.exists():
     harvest_filter_save_clean_urls()
 else:
