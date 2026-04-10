@@ -14,10 +14,14 @@ def retrieve_urls_from_file(filename):
 
 def extract_content(url_list):
     data = []
+    test_counter = 0
 
     for url in url_list:
         if not url:
             continue
+
+        if test_counter >= 1:
+            break
 
         print(f"[content-extractor] Now scraping: {url}")
 
@@ -53,7 +57,7 @@ def extract_content(url_list):
 
         data.append(object)
 
-        break
+        test_counter += 1
 
         # time.sleep(random.uniform(1.5, 3.0))
     
