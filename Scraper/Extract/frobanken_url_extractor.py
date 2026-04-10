@@ -22,9 +22,6 @@ def harvest_urls(sitemaps, output_filename):
                 file.write(f"{loc.text}\n")
     print("[url_extractor] URLs harvested from sitemaps...")
 
-# Initiate harvesting
-harvest_urls(sitemaps, "frobanken-raw-urls.txt")
-
 def filter():
     return filter_unique_types(extract_bulk_urls_from_file("frobanken-raw-urls.txt"))
 
@@ -73,6 +70,7 @@ def save_filtered_urls(filename, vegetable_urls):
             file.write(f"{url}\n")
 
 def filter_and_save_clean_urls():
+    harvest_urls(sitemaps, "frobanken-raw-urls.txt")
     save_filtered_urls("frobanken-veg-urls.txt", 
                        filter_raw_urls(extract_bulk_urls_from_file("frobanken-raw-urls.txt"), 
                                        generate_filtered_list(filter())))
