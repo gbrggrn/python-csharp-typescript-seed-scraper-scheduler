@@ -2,7 +2,7 @@ import requests
 import json
 
 model = "llama3.1"
-prompt = "Filter this list for vegetables. Return ONLY a JSON array of strings. Example: ['carrot', 'potato']. No dictionary, no categories, no preamble."
+prompt = "Filter this list for vegetables. Return ONLY a JSON array of strings. Example: ['carrot', 'potato']. No dictionary, no booleans, no categories, no preamble."
 stream = False
 url = "http://192.168.39.179:11434/api/generate"
 
