@@ -17,10 +17,11 @@ def extract_content(url_list):
     test_counter = 0
 
     for url in url_list:
+        test_counter += 1
         if not url:
             continue
 
-        if test_counter >= 1:
+        if test_counter >= 2:
             break
 
         print(f"[content-extractor] Now scraping: {url}")
@@ -57,8 +58,6 @@ def extract_content(url_list):
 
         data.append(object)
 
-        test_counter += 1
-
-        # time.sleep(random.uniform(1.5, 3.0))
+        time.sleep(random.uniform(1.5, 3.0))
     
     return data

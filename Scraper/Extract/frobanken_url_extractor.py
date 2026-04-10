@@ -69,8 +69,11 @@ def save_filtered_urls(filename, vegetable_urls):
         for url in vegetable_urls:
             file.write(f"{url}\n")
 
-def harvest_filter_save_clean_urls():
-    harvest_urls(sitemaps, "frobanken-raw-urls.txt")
+def filter_and_save_clean_urls():
     save_filtered_urls("frobanken-veg-urls.txt", 
                        filter_raw_urls(extract_bulk_urls_from_file("frobanken-raw-urls.txt"), 
                                        generate_filtered_list(filter())))
+    
+def harvest_raw_urls():
+    harvest_urls(sitemaps, "frobanken-raw-urls.txt")
+
