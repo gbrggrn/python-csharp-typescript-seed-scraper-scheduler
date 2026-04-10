@@ -28,9 +28,11 @@ def extract_content(url_list):
 
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0"}
         response = requests.get(url, headers=headers)
-
         print(f"Status: {response.status_code} | Length: {len(response.text)}")
+        
         soup = BS(response.text, 'lxml')
+        if soup.body:
+            print(f"DEBUG BODY: {soup.body.text[:1000].strip()}")
         print(f"Page Title: {soup.title.string if soup.title else 'No Title'}")
         print(f"H1 Count: {len(soup.find_all('h1'))}")
 
