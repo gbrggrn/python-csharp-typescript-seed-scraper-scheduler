@@ -28,7 +28,7 @@ def extract_content(url_list):
 
         response = requests.get(url)
         print(f"Status: {response.status_code} | Length: {len(response.text)}")
-        soup = BS(response.text, 'html.parser')
+        soup = BS(response.text, 'lxml')
         print(f"Page Title: {soup.title.string if soup.title else 'No Title'}")
 
         name_element = soup.select_one('.tws-article-name h1')
