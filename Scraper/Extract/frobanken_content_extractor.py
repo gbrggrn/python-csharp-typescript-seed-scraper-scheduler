@@ -63,15 +63,11 @@ def extract_content(url_list):
     return data
 
 def extract_name_from_url(url):
-    name_half = url.split('sv/')[1]
-    raw_name = name_half.split('.html')[0]
-    species_name = url.split('-')[0]
-    type_chunk = raw_name.split('-')[1]
-    if "-" in type_chunk:
-        type_name = type_chunk.split('-')
-    else:
-        type_name = type_chunk
+    try:
+        raw_slug = url.split('sv/')[1].split('.html')[0]
 
-    name = ' '.join([species_name, type_name])
-    
-    return name
+        parts = [word.capitalize() for word in raw_slug.split('-')]
+
+        return ' '.join(parts)
+    except (IndexError, AttributeError):
+        return ""
