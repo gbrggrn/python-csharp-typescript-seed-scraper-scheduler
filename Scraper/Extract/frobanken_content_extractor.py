@@ -72,6 +72,6 @@ def extract_name_from_url(url):
     else:
         type_name = type_chunk
 
-    name = ' '.join(species_name, type_name)
+    name = ' '.join([species_name, type_name])
     
     return name
