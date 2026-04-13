@@ -38,18 +38,9 @@ def extract_content(url_list):
         
         soup = BS(response.text, 'lxml')
 
-        description_element = soup.select_one('.tws-article-description-text')
-
-        if not description_element:
-            print(f"[content-extractor] Description not found for: {url}")
-            continue
-
-        print(f"[content-extractor] Description scraped for: {name}")
-
-        clean_text = description_element.get_text(separator='\n')
+        clean_text = soup.get_text(separator='\n')
 
         lines = clean_text.split('\n')
-        lines.append(f"\nName: {name}")
 
         object = {
             "name": name,
