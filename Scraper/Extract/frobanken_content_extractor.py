@@ -26,20 +26,17 @@ def extract_content(url_list):
 
         print(f"[content-extractor] Now scraping: {url}")
 
+        name = extract_name_from_url(url)
+        if len(name) < 1:
+            print(f"[content-extractor] Name could not be extracted for {url}")
+        else:
+            print(f"[content-extractor] Name: {name}")
+
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0"}
         response = requests.get(url, headers=headers)
         print(f"Status: {response.status_code} | Length: {len(response.text)}")
         
         soup = BS(response.text, 'lxml')
-
-        name_element = soup.find('h1')
-
-        if not name_element:
-            print(f"Name not found for: {url}")
-            continue
-
-        name = name_element.text.strip()
-        print(f"Scraped veg: {name}")
 
         description_element = soup.select_one('.tws-article-description-text')
 
@@ -64,3 +61,17 @@ def extract_content(url_list):
         time.sleep(random.uniform(1.5, 3.0))
     
     return data
+
+def extract_name_from_url(url):
+    name_half = url.split('sv/')[1]
+    raw_name = name_half.split('.html')[0]
+    species_name = url.split('-')[0]
+    type_chunk = raw_name.split('-')[1]
+    if "-" in type_chunk:
+        type_name = type_chunk.split('-')
+    else:
+        type_name = type_chunk
+
+    name = ' '.join(species_name, type_name)
+    
+    return name
