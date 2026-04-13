@@ -28,6 +28,9 @@ bin/
 obj/
 TestResults/
 appsettings.Development.json
+app.db
+app.db-shm
+app.db-wal
 
 # =========================
 # React / Node.js (/Client)
