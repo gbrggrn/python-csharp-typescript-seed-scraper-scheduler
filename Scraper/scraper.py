@@ -28,6 +28,6 @@ DTOs = transform(data)
 
 # Load
 print("==========\nLoading data...\n===========")
-load(DTOs)
+# load(DTOs)
 
 print("==========\nETL SCRIPTING FINISHED...\n==========")
