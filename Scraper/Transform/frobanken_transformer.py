@@ -21,28 +21,35 @@ def extract_DTOs_from_data(data):
 
         for line in entry["lines"]:
             if "Sådjup:" in line:
+                print(f"Sådjup found: {line}")
                 sow_depth = line.split(":")[1].strip()
             if "Grotid:" in line:
                 min_germination_days = line.split(":")[1].split("–")[0].strip()
                 max_germination_days = line.split(":")[1].split("–")[1].split(" ")[0].strip()
+                print(f"Grotid found: {line}")
             if "Höjd:" in line:
                 min_height_split = line.split(":")[1]
+                print(f"Höjd found: {line}")
                 if "–" in min_height_split:
                     min_height = min_height_split.split("–")[0].strip()
                     max_height = min_height_split.split("–")[1].strip()
                 else:
                     min_height = min_height_split.split(" ")[0].strip()
             if "Radavstånd:" in line:
+                print(f"Radavstånd found: {line}")
                 row_spacing = line.split(":")[1].split(" ")[0].strip()
             if "Plantavstånd:" in line:
+                print(f"Plantavstånd found: {line}")
                 plant_spacing = line.split(":")[1].split(" ")[0].strip()
             if "Såperiod:" in line:
+                print(f"Såperiod found: {line}")
                 min_month_str = line.split(":")[1].split("–")[0].strip()
                 max_month_str = line.split(":")[1].split("–")[1].strip()
 
                 min_sow_month = month_helper(min_month_str)
                 max_sow_month = month_helper(max_month_str)
             if "Skördeperiod:" in line:
+                print(f"Skördeperiod found: {line}")
                 min_harvest_str = line.split(":")[1].split("–")[0].strip()
                 max_harvest_str = line.split(":")[1].split("–")[1].strip()
 

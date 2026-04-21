@@ -34,6 +34,7 @@ def extract_content(url_list):
 
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0"}
         response = requests.get(url, headers=headers)
+        response.encoding = 'utf-8'
         print(f"Status: {response.status_code} | Length: {len(response.text)}")
         
         soup = BS(response.text, 'lxml')
