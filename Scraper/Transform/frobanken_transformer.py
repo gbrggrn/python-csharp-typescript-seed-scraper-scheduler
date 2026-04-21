@@ -49,8 +49,6 @@ def extract_DTOs_from_data(data):
                 min_harvest = month_helper(min_harvest_str)
                 max_harvest = month_helper(max_harvest_str)
 
-            print(f"[transformer] PLANT CONTENT:\nSådjup:{sow_depth}\nGrotid:{min_germination_days}-{max_germination_days}\nHöjd:{min_height}-{max_height}\nRadavstånd:{row_spacing}\nPlantavstånd:{plant_spacing}\nSåperiod: {min_sow_month}-{max_sow_month}\nSkördeperiod: {min_sow_month}-{max_sow_month}")
-
         DTO = {
             "name": entry["name"],
             "sow_depth": sow_depth,
@@ -65,6 +63,8 @@ def extract_DTOs_from_data(data):
             "min_harvest": min_harvest,
             "max_harvest": max_harvest
         }
+
+        print(f"[transformer] PLANT CONTENT:\nSådjup:{sow_depth}\nGrotid:{min_germination_days}-{max_germination_days}\nHöjd:{min_height}-{max_height}\nRadavstånd:{row_spacing}\nPlantavstånd:{plant_spacing}\nSåperiod: {min_sow_month}-{max_sow_month}\nSkördeperiod: {min_sow_month}-{max_sow_month}")
 
         extracted_DTOs.append(DTO)
 
