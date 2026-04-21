@@ -41,6 +41,8 @@ def extract_content(url_list):
 
         clean_text = soup.get_text(separator='\n')
 
+        print(f"--- START RAW DUMP ---\n{clean_text[:2000]}\n--- END RAW DUMP ---")
+
         lines = clean_text.split('\n')
 
         object = {
