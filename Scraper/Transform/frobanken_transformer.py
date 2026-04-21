@@ -7,21 +7,19 @@ def extract_DTOs_from_data(data):
     extracted_DTOs = []
     
     for entry in data:
+        sow_depth = ""
+        min_germination_days = ""
+        max_germination_days = ""
+        min_height = ""
+        max_height = ""
+        row_spacing = ""
+        plant_spacing = ""
+        min_sow_month = ""
+        max_sow_month = ""
+        min_harvest = ""
+        max_harvest = ""
 
         for line in entry["lines"]:
-
-            sow_depth = ""
-            min_germination_days = ""
-            max_germination_days = ""
-            min_height = ""
-            max_height = ""
-            row_spacing = ""
-            plant_spacing = ""
-            min_sow_month = ""
-            max_sow_month = ""
-            min_harvest = ""
-            max_harvest = ""
-
             if "Sådjup:" in line:
                 sow_depth = line.split(":")[1].strip()
             if "Grotid:" in line:
@@ -53,22 +51,22 @@ def extract_DTOs_from_data(data):
 
             print(f"[transformer] PLANT CONTENT:\nSådjup:{sow_depth}\nGrotid:{min_germination_days}-{max_germination_days}\nHöjd:{min_height}-{max_height}\nRadavstånd:{row_spacing}\nPlantavstånd:{plant_spacing}\nSåperiod: {min_sow_month}-{max_sow_month}\nSkördeperiod: {min_sow_month}-{max_sow_month}")
 
-            DTO = {
-                "name": entry["name"],
-                "sow_depth": sow_depth,
-                "min_germination_days": min_germination_days,
-                "max_germination_days": max_germination_days,
-                "min_height": min_height,
-                "max_height": max_height,
-                "row_spacing": row_spacing,
-                "plant_spacing": plant_spacing,
-                "min_sow_month": min_sow_month,
-                "max_sow_month": max_sow_month,
-                "min_harvest": min_harvest,
-                "max_harvest": max_harvest
-            }
+        DTO = {
+            "name": entry["name"],
+            "sow_depth": sow_depth,
+            "min_germination_days": min_germination_days,
+            "max_germination_days": max_germination_days,
+            "min_height": min_height,
+            "max_height": max_height,
+            "row_spacing": row_spacing,
+            "plant_spacing": plant_spacing,
+            "min_sow_month": min_sow_month,
+            "max_sow_month": max_sow_month,
+            "min_harvest": min_harvest,
+            "max_harvest": max_harvest
+        }
 
-            extracted_DTOs.append(DTO)
+        extracted_DTOs.append(DTO)
 
     return extracted_DTOs
 
