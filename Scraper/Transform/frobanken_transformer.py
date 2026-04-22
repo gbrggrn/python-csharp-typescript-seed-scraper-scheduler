@@ -29,22 +29,22 @@ def extract_DTOs_from_data(data):
             if i + 1 > len(description):
                 break
 
-            if "Sådjup:" == key:
+            if "sådjup" in key:
                 val = description[i+1]
                 dto["sow_depth"], _ = parse_range(val)
-            elif "Grotid:" == key:
+            elif "grotid" in key:
                 val = description[i+1]
                 dto["min_germination_days"], dto["max_germination_days"] = map(int, parse_range(val))
-            elif "Höjd:" == key:
+            elif "höjd" in key:
                 val = description[i+1]
                 dto["min_height"], dto["max_height"] = map(int, parse_range(val))
-            elif "Radavstånd:" == key:
+            elif "radavstånd" in key:
                 val = description[i+1]
                 dto["row_spacing"], _ = parse_range(val)
-            elif "Plantavstånd:" == key:
+            elif "plantavstånd" in key:
                 val = description[i+1]
                 dto["plant_spacing"], _ = parse_range(val)
-            elif "Såperiod:" == key:
+            elif "såperiod" in key:
                 val = description[i+1]
                 if "-" in val:
                     parts = val.splt("–")
@@ -53,7 +53,7 @@ def extract_DTOs_from_data(data):
                 else:
                     dto["min_sow_month"] = month_helper(val)
                     dto["max_sow_month"] = dto["min_sow_month"]
-            elif "Skördeperiod:" == key:
+            elif "skördeperiod" in key:
                 val = description[i+1]
                 if "–" in val:
                     parts = val.split("–")
