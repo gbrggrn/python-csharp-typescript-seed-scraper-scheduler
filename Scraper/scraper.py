@@ -3,7 +3,7 @@
 from Extract.frobanken_content_extractor import request_veg_data
 from Extract.frobanken_content_extractor import clean_response
 from Transform.frobanken_transformer import transform
-#from Load.frobanken_loader import load
+from Load.frobanken_loader import load
 #from pathlib import Path
 """
 # Extract URLs
@@ -33,6 +33,6 @@ for dto in DTOs:
 
 # Load
 print("==========\nLoading data...\n===========")
-# load(DTOs)
+load(DTOs)
 
 print("==========\nETL SCRIPTING FINISHED...\n==========")
