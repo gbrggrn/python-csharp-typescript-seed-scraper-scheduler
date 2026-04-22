@@ -96,6 +96,20 @@ def request_veg_data():
 
     if response.status_code == 200:
         data = response.json()
-        print(f"[content-extractor] Response:\n{data['result']}")
+        print(f"[content-extractor] Fetch successful!")
+        return data
     else:
-        print(f"[content-extractor] Failed! Response:\n{response.text}")
+        print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
+        return None
+
+def clean_response(data):
+    print("[content-extractor] Cleaning JSON response...")
+    html_blob = data['result'][0]['description']['sv']
+
+    soup = BS(html_blob, 'html.parser')
+    clean_text = soup.get_text(separator='\n')
+
+    lines = clean_text.splitlines()
+    print(f"[content-extractor] Response cleaned:\n{lines}")
+
+    return lines
