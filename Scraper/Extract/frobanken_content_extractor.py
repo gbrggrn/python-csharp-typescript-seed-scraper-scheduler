@@ -110,7 +110,7 @@ def clean_response(response_json):
 
         uid = item.get('uid')
 
-        raw_description = item.get('description', {}.get('sv', ''))
+        raw_description = item.get('description', {}).get('sv', '')
         description_lines = clean_description(raw_description)
 
         object = {

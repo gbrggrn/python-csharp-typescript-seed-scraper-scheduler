@@ -28,6 +28,9 @@ cleaned_response = clean_response(response)
 print("==========\nPackaging data...\n===========")
 DTOs = transform(cleaned_response)
 
+for dto in DTOs:
+    print(f"{dto['name']}")
+
 # Load
 print("==========\nLoading data...\n===========")
 # load(DTOs)
