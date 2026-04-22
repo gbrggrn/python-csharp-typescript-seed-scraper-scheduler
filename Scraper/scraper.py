@@ -33,6 +33,6 @@ for dto in DTOs:
 
 # Load
 print("==========\nLoading data...\n===========")
-load(DTOs)
+# load(DTOs)
 
 print("==========\nETL SCRIPTING FINISHED...\n==========")
