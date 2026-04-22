@@ -95,14 +95,29 @@ def request_veg_data():
     response = requests.post(url, json=payload, headers=headers)
 
     if response.status_code == 200:
-        data = response.json()
         print(f"[content-extractor] Fetch successful!")
-        return data
+        return response.json()
     else:
         print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
         return None
+    
+def package_response(response):
+    packaged_data = []
 
-def clean_response(data):
+    for item in response['result']:
+        clean_description = clean_description(item)
+
+        object = {
+            "name": response['result'][0]['name']['sv'],
+            "description": clean_description,
+            "uid": response['result'][0]['/uid']
+        }
+
+        packaged_data.append(object)
+
+    return packaged_data
+
+def clean_description(data):
     print("[content-extractor] Cleaning JSON response...")
     html_blob = data['result'][0]['description']['sv']
 
