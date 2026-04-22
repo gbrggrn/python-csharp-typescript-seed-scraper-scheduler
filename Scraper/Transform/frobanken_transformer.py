@@ -11,14 +11,14 @@ def extract_DTOs_from_data(data):
     for entry in data:
 
         dto = {
-            "name": entry['name'],
-            "sow_depth": 0.0,
-            "min_germination_days": 0.0, "max_germination_days": 0.0,
-            "min_height": 0.0, "max_height": 0.0,
-            "row_spacing": 0.0,
-            "plant_spacing": 0.0,
-            "min_sow_month": 0.0, "max_sow_month": 0.0,
-            "min_harvest": 0.0, "max_harvest": 0.0
+            "Name": entry['name'],
+            "SowDepth": 0.0,
+            "MinGerminationDays": 0.0, "MaxGerminationDays": 0.0,
+            "MinHeight": 0.0, "MaxHeight": 0.0,
+            "RowSpacing": 0.0,
+            "PlantSpacing": 0.0,
+            "MinSowMonth": 0.0, "MaxSowMonth": 0.0,
+            "MinHarvestMonth": 0.0, "MaxHarvestMonth": 0.0
         }
 
         description = entry['description']
@@ -32,42 +32,42 @@ def extract_DTOs_from_data(data):
             if "sådjup" in key:
                 val = description[i+1]
                 print(f"{val}")
-                dto["sow_depth"], _ = parse_range(val)
+                dto["SowDepth"], _ = parse_range(val)
             elif "grotid" in key:
                 val = description[i+1]
                 print(f"{val}")
-                dto["min_germination_days"], dto["max_germination_days"] = map(int, parse_range(val))
+                dto["MinGerminationDays"], dto["MaxGerminationDays"] = map(int, parse_range(val))
             elif "höjd" in key:
                 val = description[i+1]
                 print(f"{val}")
-                dto["min_height"], dto["max_height"] = map(int, parse_range(val))
+                dto["MinHeight"], dto["MaxHeight"] = map(int, parse_range(val))
             elif "radavstånd" in key:
                 val = description[i+1]
                 print(f"{val}")
-                dto["row_spacing"], _ = parse_range(val)
+                dto["RowSpacing"], _ = parse_range(val)
             elif "plantavstånd" in key:
                 val = description[i+1]
                 print(f"{val}")
-                dto["plant_spacing"], _ = parse_range(val)
+                dto["PlantSpacing"], _ = parse_range(val)
             elif "såperiod" in key:
                 val = description[i+1]
                 print(f"{val}")
                 if "-" in val:
                     parts = val.splt("–")
-                    dto["min_sow_month"] = month_helper(parts[0])
-                    dto["max_sow_month"] = month_helper(parts[1])
+                    dto["MinSowMonth"] = month_helper(parts[0])
+                    dto["MaxSowMonth"] = month_helper(parts[1])
                 else:
-                    dto["min_sow_month"] = month_helper(val)
-                    dto["max_sow_month"] = dto["min_sow_month"]
+                    dto["MinSowMonth"] = month_helper(val)
+                    dto["MaxSowMonth"] = dto["MinSowMonth"]
             elif "skördeperiod" in key:
                 val = description[i+1]
                 if "–" in val:
                     parts = val.split("–")
-                    dto["min_harvest"] = month_helper(parts[0])
-                    dto["max_harvest"] = month_helper(parts[1])
+                    dto["MinHarvestMonth"] = month_helper(parts[0])
+                    dto["MaxHarvestMonth"] = month_helper(parts[1])
                 else:
-                    dto["min_harvest"] = month_helper(val)
-                    dto["max_harvest"] = dto["min_harvest"]
+                    dto["MinHarvestMonth"] = month_helper(val)
+                    dto["MaxHarvestMonth"] = dto["min_harvest"]
 
         extracted_DTOs.append(dto)
 
