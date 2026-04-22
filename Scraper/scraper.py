@@ -26,7 +26,7 @@ clean_data = clean_response(raw_data)
 
 # Transform
 print("==========\nPackaging data...\n===========")
-DTOs = transform(data)
+DTOs = transform(clean_data)
 
 # Load
 print("==========\nLoading data...\n===========")
