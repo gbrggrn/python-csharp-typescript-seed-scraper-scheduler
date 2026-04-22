@@ -9,6 +9,8 @@ public class PlantCreateDTO
     public float SowDepth { get; set; }
     public float MinGerminationDays { get; set; }
     public float MaxGerminationDays { get; set; }
+    public float MinHeight { get; set; }
+    public float MaxHeight { get; set; }
     public float RowSpacing { get; set; }
     public float PlantSpacing { get; set; }
     public float MinSowMonth { get; set; }
