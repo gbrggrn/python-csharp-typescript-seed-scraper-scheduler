@@ -101,30 +101,34 @@ def request_veg_data():
         print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
         return None
     
-def clean_response(response):
+def clean_response(response_json):
     packaged_data = []
 
-    for item in response['result']:
-        clean_description = clean_description(item)
+    for item in response_json.get('result', []):
+        name = item.get('name', {}).get('sv', 'Unknown')
+
+        uid = item.get('uid')
+
+        description_lines = clean_description(item)
 
         object = {
-            "name": response['result'][0]['name']['sv'],
-            "description": clean_description,
-            "uid": response['result'][0]['/uid']
+            "name": name,
+            "description": description_lines,
+            "uid": uid
         }
 
         packaged_data.append(object)
 
     return packaged_data
 
-def clean_description(data):
+def clean_description(item):
     print("[content-extractor] Cleaning JSON response...")
-    html_blob = data['result'][0]['description']['sv']
+    html_blob = item.get('description', {}.get('sv', ''))
+
+    if not html_blob:
+        return []
 
     soup = BS(html_blob, 'html.parser')
     clean_text = soup.get_text(separator='\n')
 
-    lines = clean_text.splitlines()
-    print(f"[content-extractor] Response cleaned:\n{lines}")
-
-    return lines
+    return [line.strip() for line in clean_text.splitlines() if line.strip()]
