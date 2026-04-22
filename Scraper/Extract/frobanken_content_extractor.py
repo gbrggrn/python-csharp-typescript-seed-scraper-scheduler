@@ -63,3 +63,39 @@ def extract_name_from_url(url):
         return ' '.join(parts)
     except (IndexError, AttributeError):
         return ""
+    
+def request_veg_data():
+    url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
+    headers = {
+        "Content-Type": "application/json",
+        "Referer": "https://xn--frbanken-o4a.se/sv/bifftomat-pantano.html",
+        "X-Requested-With": "XMLHttpRequest"
+    }
+
+    payload = {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "Article.list",
+        "params": [
+            {
+                "name": ["sv"],
+                "description": "sv",
+                "uid": True
+            },
+            {
+                "filters": {
+                    "/uid": {
+                        "in": [178276989]
+                    }
+                }
+            }
+        ]
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        print(f"[content-extractor] Response:\n{data["result"]}")
+    else:
+        print(f"[content-extractor] Failed! Response:\n{response.text}")
