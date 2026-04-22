@@ -24,7 +24,10 @@ def extract_DTOs_from_data(data):
         description = entry['description']
 
         for i, line in enumerate(description):
-            key = line.strip()
+            key = line.strip().lower()
+
+            if i + 1 > len(description):
+                break
 
             if "Sådjup:" == key:
                 val = description[i+1]
