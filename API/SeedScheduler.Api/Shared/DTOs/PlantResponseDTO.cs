@@ -7,14 +7,14 @@ public class PlantResponseDTO
     public string Name { get; set; } = string.Empty;
 
     // Growth properties
-    public int SowDepth { get; set; }
-    public int MinGerminationDays { get; set; }
-    public int MaxGerminationDays { get; set; }
-    public int RowSpacing { get; set; }
-    public int PlantSpacing { get; set; }
-    public int MinSowMonth { get; set; }
-    public int MaxSowMonth { get; set; }
-    public int MinHarvestMonth { get; set; }
-    public int MaxHarvestMonth { get; set; }
-    public bool IsPerennial { get; set; }
+    public float SowDepth { get; set; }
+    public float MinGerminationDays { get; set; }
+    public float MaxGerminationDays { get; set; }
+    public float RowSpacing { get; set; }
+    public float PlantSpacing { get; set; }
+    public float MinSowMonth { get; set; }
+    public float MaxSowMonth { get; set; }
+    public float MinHarvestMonth { get; set; }
+    public float MaxHarvestMonth { get; set; }
+    public float IsPerennial { get; set; }
 }
