@@ -25,6 +25,8 @@ public class PlantService
             SowDepth = p.SowDepth,
             MinGerminationDays = p.MinGerminationDays,
             MaxGerminationDays = p.MaxGerminationDays,
+            MinHeight = p.MinHeight,
+            MaxHeight = p.MaxHeight,
             RowSpacing = p.RowSpacing,
             PlantSpacing = p.PlantSpacing,
             MinSowMonth = p.MinSowMonth,
@@ -43,6 +45,8 @@ public class PlantService
             SowDepth = dto.SowDepth,
             MinGerminationDays = dto.MinGerminationDays,
             MaxGerminationDays = dto.MaxGerminationDays,
+            MinHeight = dto.MinHeight,
+            MaxHeight = dto.MaxHeight,
             RowSpacing = dto.RowSpacing,
             PlantSpacing = dto.PlantSpacing,
             MinSowMonth = dto.MinSowMonth,
@@ -67,6 +71,8 @@ public class PlantService
                 SowDepth = dtos[i].SowDepth,
                 MinGerminationDays = dtos[i].MinGerminationDays,
                 MaxGerminationDays = dtos[i].MaxGerminationDays,
+                MinHeight = dtos[i].MinHeight,
+                MaxHeight = dtos[i].MaxHeight,
                 RowSpacing = dtos[i].RowSpacing,
                 PlantSpacing = dtos[i].PlantSpacing,
                 MinSowMonth = dtos[i].MinSowMonth,
@@ -93,6 +99,8 @@ public class PlantService
         existingPlant.SowDepth = dto.SowDepth;
         existingPlant.MinGerminationDays = dto.MinGerminationDays;
         existingPlant.MaxGerminationDays = dto.MaxGerminationDays;
+        existingPlant.MinHeight = dto.MinHeight;
+        existingPlant.MaxHeight = dto.MaxHeight;
         existingPlant.RowSpacing = dto.RowSpacing;
         existingPlant.PlantSpacing = dto.PlantSpacing;
         existingPlant.MinSowMonth = dto.MinSowMonth;
