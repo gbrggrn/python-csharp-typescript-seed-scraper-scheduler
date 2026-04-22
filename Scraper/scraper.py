@@ -2,7 +2,7 @@
 #from Extract.frobanken_url_extractor import harvest_raw_urls
 from Extract.frobanken_content_extractor import request_veg_data
 from Extract.frobanken_content_extractor import clean_response
-#from Transform.frobanken_transformer import transform
+from Transform.frobanken_transformer import transform
 #from Load.frobanken_loader import load
 #from pathlib import Path
 """
@@ -23,7 +23,7 @@ else:
 print("==========\nExtracting data...\n==========")
 raw_data = request_veg_data()
 clean_data = clean_response(raw_data)
-"""
+
 # Transform
 print("==========\nPackaging data...\n===========")
 DTOs = transform(data)
@@ -33,4 +33,3 @@ print("==========\nLoading data...\n===========")
 # load(DTOs)
 
 print("==========\nETL SCRIPTING FINISHED...\n==========")
-"""
