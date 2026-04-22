@@ -22,11 +22,11 @@ else:
 """
 print("==========\nExtracting data...\n==========")
 response = request_veg_data()
-clean_response = package_response(response)
+cleaned_response = clean_response(response)
 
 # Transform
 print("==========\nPackaging data...\n===========")
-DTOs = transform(clean_response)
+DTOs = transform(cleaned_response)
 
 # Load
 print("==========\nLoading data...\n===========")
