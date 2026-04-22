@@ -16,5 +16,5 @@ public class PlantResponseDTO
     public float MaxSowMonth { get; set; }
     public float MinHarvestMonth { get; set; }
     public float MaxHarvestMonth { get; set; }
-    public float IsPerennial { get; set; }
+    public bool IsPerennial { get; set; }
 }
