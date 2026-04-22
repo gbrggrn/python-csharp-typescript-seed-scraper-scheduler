@@ -1,3 +1,5 @@
+import re
+
 def transform(data):
     DTOs = extract_DTOs_from_data(data)
 
@@ -7,73 +9,58 @@ def extract_DTOs_from_data(data):
     extracted_DTOs = []
     
     for entry in data:
-        sow_depth = ""
-        min_germination_days = ""
-        max_germination_days = ""
-        min_height = ""
-        max_height = ""
-        row_spacing = ""
-        plant_spacing = ""
-        min_sow_month = ""
-        max_sow_month = ""
-        min_harvest = ""
-        max_harvest = ""
 
-        for line in entry["lines"]:
-            if "Sådjup:" in line:
-                print(f"Sådjup found: {line}")
-                sow_depth = line.split(":")[1].strip()
-            if "Grotid:" in line:
-                min_germination_days = line.split(":")[1].split("–")[0].strip()
-                max_germination_days = line.split(":")[1].split("–")[1].split(" ")[0].strip()
-                print(f"Grotid found: {line}")
-            if "Höjd:" in line:
-                min_height_split = line.split(":")[1]
-                print(f"Höjd found: {line}")
-                if "–" in min_height_split:
-                    min_height = min_height_split.split("–")[0].strip()
-                    max_height = min_height_split.split("–")[1].strip()
-                else:
-                    min_height = min_height_split.split(" ")[0].strip()
-            if "Radavstånd:" in line:
-                print(f"Radavstånd found: {line}")
-                row_spacing = line.split(":")[1].split(" ")[0].strip()
-            if "Plantavstånd:" in line:
-                print(f"Plantavstånd found: {line}")
-                plant_spacing = line.split(":")[1].split(" ")[0].strip()
-            if "Såperiod:" in line:
-                print(f"Såperiod found: {line}")
-                min_month_str = line.split(":")[1].split("–")[0].strip()
-                max_month_str = line.split(":")[1].split("–")[1].strip()
-
-                min_sow_month = month_helper(min_month_str)
-                max_sow_month = month_helper(max_month_str)
-            if "Skördeperiod:" in line:
-                print(f"Skördeperiod found: {line}")
-                min_harvest_str = line.split(":")[1].split("–")[0].strip()
-                max_harvest_str = line.split(":")[1].split("–")[1].strip()
-
-                min_harvest = month_helper(min_harvest_str)
-                max_harvest = month_helper(max_harvest_str)
-
-        DTO = {
-            "name": entry["name"],
-            "sow_depth": sow_depth,
-            "min_germination_days": min_germination_days,
-            "max_germination_days": max_germination_days,
-            "min_height": min_height,
-            "max_height": max_height,
-            "row_spacing": row_spacing,
-            "plant_spacing": plant_spacing,
-            "min_sow_month": min_sow_month,
-            "max_sow_month": max_sow_month,
-            "min_harvest": min_harvest,
-            "max_harvest": max_harvest
+        dto = {
+            "name": entry['name'],
+            "sow_depth": 0.0,
+            "min_germination_days": 0, "max_germination_days": 0,
+            "min_height": 0.0, "max_height": 0.0,
+            "row_spacing": 0,
+            "plant_spacing": 0,
+            "min_sow_month": 0, "max_sow_month": 0,
+            "min_harvest": 0, "max_harvest": 0
         }
 
-        print(f"[transformer] PLANT CONTENT:\nSådjup:{sow_depth}\nGrotid:{min_germination_days}-{max_germination_days}\nHöjd:{min_height}-{max_height}\nRadavstånd:{row_spacing}\nPlantavstånd:{plant_spacing}\nSåperiod: {min_sow_month}-{max_sow_month}\nSkördeperiod: {min_sow_month}-{max_sow_month}")
+        description = entry['description']
 
-        extracted_DTOs.append(DTO)
+        for i, line in enumerate(description):
+            key = line.strip()
+
+            if "Sådjup:" == key:
+                val = description[i+1]
+                dto["sow_depth"], _ = parse_range(val)
+            elif "Grotid:" == key:
+                val = description[i+1]
+                dto["min_germination_days"], dto["max_germination_days"] = map(int, parse_range(val))
+            elif "Höjd:" == key:
+                val = description[i+1]
+                dto["min_height"], dto["max_height"] = map(int, parse_range(val))
+            elif "Radavstånd:" == key:
+                val = description[i+1]
+                dto["row_spacing"], _ = parse_range(val)
+            elif "Plantavstånd:" == key:
+                val = description[i+1]
+                dto["plant_spacing"], _ = parse_range(val)
+            elif "Såperiod:":
+                val = description[i+1]
+                if "-" in val:
+                    parts = val.splt("–")
+                    dto["min_sow_month"] = month_helper(parts[0])
+                    dto["max_sow_month"] = month_helper(parts[1])
+                else:
+                    dto["min_sow_month"] = month_helper(val)
+                    dto["max_sow_month"] = dto["min_sow_month"]
+            elif "Skördeperiod:":
+                val = description[i+1]
+                if "–" in val:
+                    parts = val.split("–")
+                    dto["min_harvest"] = month_helper(parts[0])
+                    dto["max_harvest"] = month_helper(parts[1])
+                else:
+                    dto["min_harvest"] = month_helper(val)
+                    dto["max_harvest"] = dto["min_harvest"]
+
+        extracted_DTOs.append(dto)
 
     return extracted_DTOs
 
@@ -97,3 +84,15 @@ def month_helper(month):
         return months_values[month]
     else:
         return 0
+    
+def parse_range(value_str):
+    # Find all numbers replace commas with dots
+    numbers = re.findall(r'\d+(?:[.,]\d+)?', value_str.replace(',', '.'))
+
+    nums = [float(n) for n in numbers]
+
+    if len(nums) >= 2:
+        return nums[0], nums[1]
+    elif len(nums) == 1:
+        return nums[0], nums[0]
+    return 0, 0
