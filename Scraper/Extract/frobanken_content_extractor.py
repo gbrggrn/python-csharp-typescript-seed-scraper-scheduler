@@ -110,7 +110,8 @@ def clean_response(response_json):
 
         uid = item.get('uid')
 
-        description_lines = clean_description(item)
+        raw_description = item.get('description', {}.get('sv', ''))
+        description_lines = clean_description(raw_description)
 
         object = {
             "name": name,
@@ -122,13 +123,11 @@ def clean_response(response_json):
 
     return packaged_data
 
-def clean_description(item):
-    html_blob = item.get('description', {}.get('sv', ''))
-
-    if not html_blob:
+def clean_description(raw_description):
+    if not raw_description:
         return []
-
-    soup = BS(html_blob, 'html.parser')
+    
+    soup = BS(raw_description, 'html.parser')
     clean_text = soup.get_text(separator='\n')
 
     return [line.strip() for line in clean_text.splitlines() if line.strip()]
