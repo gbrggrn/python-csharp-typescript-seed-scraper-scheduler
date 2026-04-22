@@ -102,6 +102,7 @@ def request_veg_data():
         return None
     
 def clean_response(response_json):
+    print("[content-extractor] Cleaning and formatting JSON response...")
     packaged_data = []
 
     for item in response_json.get('result', []):
@@ -122,7 +123,6 @@ def clean_response(response_json):
     return packaged_data
 
 def clean_description(item):
-    print("[content-extractor] Cleaning JSON response...")
     html_blob = item.get('description', {}.get('sv', ''))
 
     if not html_blob:
