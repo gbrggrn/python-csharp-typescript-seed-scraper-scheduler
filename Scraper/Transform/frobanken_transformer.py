@@ -41,7 +41,7 @@ def extract_DTOs_from_data(data):
             elif "Plantavstånd:" == key:
                 val = description[i+1]
                 dto["plant_spacing"], _ = parse_range(val)
-            elif "Såperiod:":
+            elif "Såperiod:" == key:
                 val = description[i+1]
                 if "-" in val:
                     parts = val.splt("–")
@@ -50,7 +50,7 @@ def extract_DTOs_from_data(data):
                 else:
                     dto["min_sow_month"] = month_helper(val)
                     dto["max_sow_month"] = dto["min_sow_month"]
-            elif "Skördeperiod:":
+            elif "Skördeperiod:" == key:
                 val = description[i+1]
                 if "–" in val:
                     parts = val.split("–")
