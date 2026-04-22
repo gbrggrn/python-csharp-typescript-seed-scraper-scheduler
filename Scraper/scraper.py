@@ -21,12 +21,12 @@ else:
     print("[scraper] Filtering done. Continuing...")
 """
 print("==========\nExtracting data...\n==========")
-raw_data = request_veg_data()
-clean_data = clean_response(raw_data)
+response = request_veg_data()
+clean_response = package_response(response)
 
 # Transform
 print("==========\nPackaging data...\n===========")
-DTOs = transform(clean_data)
+DTOs = transform(clean_response)
 
 # Load
 print("==========\nLoading data...\n===========")

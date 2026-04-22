@@ -101,7 +101,7 @@ def request_veg_data():
         print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
         return None
     
-def package_response(response):
+def clean_response(response):
     packaged_data = []
 
     for item in response['result']:
