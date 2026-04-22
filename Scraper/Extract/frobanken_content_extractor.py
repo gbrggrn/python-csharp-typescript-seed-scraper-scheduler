@@ -96,6 +96,6 @@ def request_veg_data():
 
     if response.status_code == 200:
         data = response.json()
-        print(f"[content-extractor] Response:\n{data["result"]}")
+        print(f"[content-extractor] Response:\n{data['result']}")
     else:
         print(f"[content-extractor] Failed! Response:\n{response.text}")

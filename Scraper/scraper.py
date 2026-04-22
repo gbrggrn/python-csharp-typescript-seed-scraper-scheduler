@@ -1,6 +1,6 @@
 # from Extract.frobanken_url_extractor import filter_and_save_clean_urls
 #from Extract.frobanken_url_extractor import harvest_raw_urls
-from Extract.frobanken_content_extractor import extract
+from Extract.frobanken_content_extractor import request_veg_data
 #from Transform.frobanken_transformer import transform
 #from Load.frobanken_loader import load
 #from pathlib import Path
@@ -20,7 +20,7 @@ else:
     print("[scraper] Filtering done. Continuing...")
 """
 print("==========\nExtracting data...\n==========")
-data = extract()
+data = request_veg_data()
 """
 # Transform
 print("==========\nPackaging data...\n===========")
