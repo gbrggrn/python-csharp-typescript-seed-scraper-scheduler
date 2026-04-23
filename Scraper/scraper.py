@@ -8,7 +8,12 @@ from Load.frobanken_loader import load
 # Extract URLs
 print("==========\nRetrieving URLs...\n==========")
 raw_uids = fetch_uids()
-cast_and_save_uids(raw_uids)
+
+if raw_uids:
+    cast_and_save_uids(raw_uids)
+else:
+    print("[scraper] Skipping save: no UIDs found...")
+    
 """
 print("==========\nExtracting data...\n==========")
 response = request_veg_data()
