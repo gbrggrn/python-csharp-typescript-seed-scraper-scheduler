@@ -1,7 +1,17 @@
 import requests
 import json
 import os
+from pathlib import Path
 
+def extract_uids():
+    SCRIPT_DIR = Path(__file__).parent
+    UIDS_PATH = SCRIPT_DIR / "plant_uids.json"
+
+    if UIDS_PATH.exists():
+        print(f"[uid-extractor] Local UIDs-file found at {UIDS_PATH}. Remove for new extraction.")
+    else:
+        return fetch_uids()
+    
 def fetch_uids():
     url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
     headers = {

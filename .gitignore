@@ -42,3 +42,8 @@ build/
 npm-debug.log*
 .env.local
 .env.development
+
+# =========================
+# Other
+# =========================
+plant_uids.json
