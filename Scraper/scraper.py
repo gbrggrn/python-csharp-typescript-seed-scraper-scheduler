@@ -1,4 +1,4 @@
-from Extract.frobanken_uid_extractor import fetch_uids
+from Extract.frobanken_uid_extractor import extract_uids
 from Extract.frobanken_uid_extractor import cast_and_save_uids
 from Extract.frobanken_content_extractor import request_veg_data
 from Extract.frobanken_content_extractor import clean_response
@@ -7,13 +7,11 @@ from Load.frobanken_loader import load
 
 # Extract URLs
 print("==========\nRetrieving URLs...\n==========")
-raw_uids = fetch_uids()
+raw_uids = extract_uids()
 
 if raw_uids:
     cast_and_save_uids(raw_uids)
-else:
-    print("[scraper] Skipping save: no UIDs found...")
-    
+
 """
 print("==========\nExtracting data...\n==========")
 response = request_veg_data()
