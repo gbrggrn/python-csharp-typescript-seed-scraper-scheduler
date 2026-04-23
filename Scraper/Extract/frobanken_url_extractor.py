@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 from Extract.ollama_client import generate_filtered_list
 
@@ -78,3 +79,39 @@ def filter_and_save_clean_urls():
         
 def harvest_raw_urls():
     harvest_urls(sitemaps, "frobanken-raw-urls.txt")
+
+def fetch_uids():
+    url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
+    headers = {
+        "Content-Type": "text/plain;charset=UTF-8",
+        "Referer": "https://xn--frbanken-o4a.se/sv/gronsaker.html",
+        "X-Requested-With": "XMLHttpRequest"
+    }
+
+    payload = {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "Article.elasticSearch",
+        "params": ["sv", {
+            "limit": "1000",
+            "artgroups": [5509467],
+            "sort": [{"name": "created", "direction": "desc"}]
+        }]
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+    results = response.json()
+
+    uids = results.get("result", {}).get("articles", [])
+    print(f"[uid-extractor] Found {len(uids)} plant UIDs...")
+    return uids
+
+def cast_and_save_uids(uids):
+    int_uids = [int(uid) for uid in uids]
+
+    with open("plant_uids.json", "w") as file:
+        json.dump(int_uids, file)
+
+    print(f"[uid-extractor] {len(int_uids)} UIDs saved to file...")
+
+    return int_uids
