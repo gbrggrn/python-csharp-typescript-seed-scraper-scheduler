@@ -12,7 +12,6 @@ raw_uids = extract_uids()
 if raw_uids:
     cast_and_save_uids(raw_uids)
 
-"""
 print("==========\nExtracting data...\n==========")
 response = request_veg_data()
 cleaned_response = clean_response(response)
@@ -26,4 +25,3 @@ print("==========\nLoading data...\n===========")
 load(DTOs)
 
 print("==========\nETL SCRIPTING FINISHED...\n==========")
-"""
