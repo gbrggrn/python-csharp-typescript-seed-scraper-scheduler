@@ -100,11 +100,16 @@ def fetch_uids():
     }
 
     response = requests.post(url, json=payload, headers=headers)
-    results = response.json()
-
-    uids = results.get("result", {}).get("articles", [])
-    print(f"[uid-extractor] Found {len(uids)} plant UIDs...")
-    return uids
+    if response.ok:
+        try:
+            results = response.json()
+            uids = results.get("result", {}).get("articles", [])
+            print(f"[uid-extractor] Fetch succesful of {len(uids)} UIDs...")
+            return uids
+        except requests.exceptions.JSONDecodeError:
+            print("[uid-extractor] Fetch succesful but response contained no JSON...")
+    else:
+        print(f"[uid-extractor] Fetch failed! Status: {response.status_code}")
 
 def cast_and_save_uids(uids):
     int_uids = [int(uid) for uid in uids]
