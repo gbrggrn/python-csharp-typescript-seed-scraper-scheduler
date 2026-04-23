@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 def fetch_uids():
     url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
@@ -35,7 +36,10 @@ def fetch_uids():
 def cast_and_save_uids(uids):
     int_uids = [int(uid) for uid in uids]
 
-    with open("plant_uids.json", "w") as file:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, "plant_uids.json")
+
+    with open(file_path, "w") as file:
         json.dump(int_uids, file)
 
     print(f"[uid-extractor] {len(int_uids)} UIDs saved to file...")
