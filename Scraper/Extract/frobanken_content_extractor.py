@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup as BS
+from pathlib import Path
 import requests
+import os
+import json
     
 def request_veg_data():
     url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
@@ -37,6 +40,29 @@ def request_veg_data():
     else:
         print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
         return None
+    
+def chunk_uids():
+    SCRIPT_DIR = Path(__file__).parent
+    UIDS_PATH = SCRIPT_DIR / "plant_uids.json"
+
+    if not UIDS_PATH.exists:
+        print(f"[content-extractor] A UID save file could not be found at: {UIDS_PATH}. No extraction...")
+        return []
+    else:
+        print(f"[content extractor] UID Save file found at: {UIDS_PATH}. Reading...")
+
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(script_dir, "plant_uids.json")
+        uids = []
+
+        with open(file_path, "r") as file:
+            uids = json.load(file)
+
+        chunk_size = 3
+
+        chunks = [uids[i:i + chunk_size] for i in range(0, len(uids), chunk_size)]
+
+        return chunks
     
 def clean_response(response_json):
     print("[content-extractor] Cleaning and formatting JSON response...")
