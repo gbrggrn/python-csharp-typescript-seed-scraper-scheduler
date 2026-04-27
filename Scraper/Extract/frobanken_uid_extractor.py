@@ -8,7 +8,9 @@ def extract_uids():
     UIDS_PATH = SCRIPT_DIR / "plant_uids.json"
 
     if UIDS_PATH.exists():
-        print(f"[uid-extractor] Local UIDs-file found at {UIDS_PATH}. Remove for new extraction.")
+        print(f"[uid-extractor] Local UIDs-file found at {UIDS_PATH} (remove for new extraction). Loading...")
+        with open(UIDS_PATH, "r") as file:
+            return json.load(file)
     else:
         return fetch_uids()
     
