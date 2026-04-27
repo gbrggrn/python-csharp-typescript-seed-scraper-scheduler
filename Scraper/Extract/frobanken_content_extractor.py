@@ -43,7 +43,7 @@ def request_veg_data(uid_chunk):
         print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
         return None
     
-def chunk_uids(chunk_size = 50):
+def chunk_uids(chunk_size):
     SCRIPT_DIR = Path(__file__).parent
     UIDS_PATH = SCRIPT_DIR / "plant_uids.json"
 
