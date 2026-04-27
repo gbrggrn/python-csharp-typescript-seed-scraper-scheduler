@@ -18,7 +18,7 @@ response = run_content_extraction_pipeline(uid_chunks)
 
 # Transform
 print("==========\nPackaging data...\n===========")
-DTOs = transform(uid_chunks)
+DTOs = transform(response)
 
 # Load
 print("==========\nLoading data...\n===========")
