@@ -74,6 +74,8 @@ def run_content_extraction_pipeline(chunked_uids):
         if response:
             cleaned = clean_response(response)
             all_cleaned_data.extend(cleaned)
+
+    return all_cleaned_data
     
 def clean_response(response_json):
     print("[content-extractor] Cleaning and formatting JSON response...")
