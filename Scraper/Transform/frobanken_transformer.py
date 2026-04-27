@@ -53,7 +53,7 @@ def extract_DTOs_from_data(data):
                 val = description[i+1]
                 print(f"{val}")
                 if "-" in val:
-                    parts = val.splt("–")
+                    parts = val.split("–")
                     dto["MinSowMonth"] = month_helper(parts[0])
                     dto["MaxSowMonth"] = month_helper(parts[1])
                 else:
