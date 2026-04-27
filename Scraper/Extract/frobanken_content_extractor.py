@@ -3,6 +3,7 @@ from pathlib import Path
 import requests
 import os
 import json
+import time
     
 def request_veg_data(uid_chunk):
     url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
@@ -74,6 +75,7 @@ def run_content_extraction_pipeline(chunked_uids):
         if response:
             cleaned = clean_response(response)
             all_cleaned_data.extend(cleaned)
+        time.sleep(1)
 
     return all_cleaned_data
     
