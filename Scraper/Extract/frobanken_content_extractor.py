@@ -4,13 +4,14 @@ import requests
 import os
 import json
     
-def request_veg_data():
+def request_veg_data(uid_chunk):
     url = "https://xn--frbanken-o4a.se/backend/jsonrpc/v1?webshop=74924&auth=&session=&language=sv&vat_country=SE"
     headers = {
         "Content-Type": "application/json",
         "Referer": "https://xn--frbanken-o4a.se/sv/bifftomat-pantano.html",
         "X-Requested-With": "XMLHttpRequest"
     }
+
 
     payload = {
         "jsonrpc": "2.0",
@@ -25,9 +26,10 @@ def request_veg_data():
             {
                 "filters": {
                     "/uid": {
-                        "in": [178276989]
+                        "in": uid_chunk
                     }
-                }
+                },
+                "limit": len(uid_chunk)
             }
         ]
     }
@@ -65,8 +67,12 @@ def run_content_extraction_pipeline(chunked_uids):
         return
     
     print(f"[content-extractor] Initiating fetching from {len(chunked_uids)} chunks...")
+    response_chunks = []
+
     for chunk in chunked_uids:
-        
+        response = request_veg_data(chunk)
+        clean_response = clean_response(response)
+        response_chunks.append(clean_response)
     
 def clean_response(response_json):
     print("[content-extractor] Cleaning and formatting JSON response...")
