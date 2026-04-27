@@ -54,9 +54,19 @@ def chunk_uids(chunk_size = 50):
         with open(UIDS_PATH, "r") as file:
             uids = json.load(file)
 
+        print("[content-extractor] Chunking...")
         chunks = [uids[i:i + chunk_size] for i in range(0, len(uids), chunk_size)]
-
+        print(f"[content-extractor] Chunking resulted in {len(chunks)} chunks.")
         return chunks
+    
+def run_content_extraction_pipeline(chunked_uids):
+    if not chunked_uids:
+        print("[content-extractor] No chunked UIDs to extract from. Quitting...")
+        return
+    
+    print(f"[content-extractor] Initiating fetching from {len(chunked_uids)} chunks...")
+    for chunk in chunked_uids:
+        
     
 def clean_response(response_json):
     print("[content-extractor] Cleaning and formatting JSON response...")
