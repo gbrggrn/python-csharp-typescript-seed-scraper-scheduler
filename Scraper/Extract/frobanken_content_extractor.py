@@ -41,24 +41,18 @@ def request_veg_data():
         print(f"[content-extractor] Fetch Failed! Response:\n{response.text}")
         return None
     
-def chunk_uids():
+def chunk_uids(chunk_size = 50):
     SCRIPT_DIR = Path(__file__).parent
     UIDS_PATH = SCRIPT_DIR / "plant_uids.json"
 
-    if not UIDS_PATH.exists:
+    if not UIDS_PATH.exists():
         print(f"[content-extractor] A UID save file could not be found at: {UIDS_PATH}. No extraction...")
         return []
     else:
         print(f"[content extractor] UID Save file found at: {UIDS_PATH}. Reading...")
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(script_dir, "plant_uids.json")
-        uids = []
-
-        with open(file_path, "r") as file:
+        with open(UIDS_PATH, "r") as file:
             uids = json.load(file)
-
-        chunk_size = 3
 
         chunks = [uids[i:i + chunk_size] for i in range(0, len(uids), chunk_size)]
 
