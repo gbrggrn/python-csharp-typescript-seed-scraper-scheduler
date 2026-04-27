@@ -71,8 +71,9 @@ def run_content_extraction_pipeline(chunked_uids):
 
     for chunk in chunked_uids:
         response = request_veg_data(chunk)
-        cleaned = clean_response(response)
-        response_chunks.append(cleaned)
+        if response:
+            cleaned = clean_response(response)
+            response_chunks.append(cleaned)
     
 def clean_response(response_json):
     print("[content-extractor] Cleaning and formatting JSON response...")
