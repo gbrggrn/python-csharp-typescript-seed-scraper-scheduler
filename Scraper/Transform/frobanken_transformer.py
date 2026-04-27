@@ -52,7 +52,7 @@ def extract_DTOs_from_data(data):
             elif "såperiod" in key:
                 val = description[i+1]
                 print(f"{val}")
-                if "-" in val:
+                if "–" in val: # !!! OBSERVE: Frobanken used EN-DASHES
                     parts = val.split("–")
                     dto["MinSowMonth"] = month_helper(parts[0])
                     dto["MaxSowMonth"] = month_helper(parts[1])
