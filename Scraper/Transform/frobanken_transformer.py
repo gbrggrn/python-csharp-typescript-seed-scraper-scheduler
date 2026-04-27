@@ -67,7 +67,7 @@ def extract_DTOs_from_data(data):
                     dto["MaxHarvestMonth"] = month_helper(parts[1])
                 else:
                     dto["MinHarvestMonth"] = month_helper(val)
-                    dto["MaxHarvestMonth"] = dto["min_harvest"]
+                    dto["MaxHarvestMonth"] = dto["MinHarvestMonth"]
 
         extracted_DTOs.append(dto)
 
