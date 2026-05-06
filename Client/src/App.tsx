@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Header from './components/header'
 import Sidebar from './components/sidebar'
-import GanttChart from './components/stage'
+import Stage from './components/stage'
 import './App.css'
 
 function App() {
@@ -11,15 +11,8 @@ function App() {
     <div className="ide-wrapper">
       <Header />
       <div className="workspace">
-        <main className="stage">
-          <GanttChart selectedPlants={selectedPlants} />
-        </main>
-        <aside className="sidebar-right">
-          <PlantExplorer
-            plants={plants}
-            onToggle={togglePlantSelection}
-            />
-        </aside>
+        <Stage />
+        <Sidebar />
       </div>
     </div>
   );
