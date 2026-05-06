@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Header from './components/header'
-import Sidebar from './components/sidebar'
-import Stage from './components/stage'
+import Header from './components/header/Header'
+import Sidebar from './components/sidebar/Sidebar'
+import Stage from './components/stage/Stage'
 import './App.css'
 
 function App() {
