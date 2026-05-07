@@ -17,7 +17,7 @@ const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
                 {plants.map((plant) => (
                     <button
                         key={plant.id}
-                        className={`list-item ${selectedIds.includes(plant.id) ? 'active' : ''}`}
+                        className={`list-item ${selectedIds.includes(plant.id) ? 'is-selected' : ''}`}
                         onClick={() => onToggle(plant.id)}
                         >
                             <span className="plant-name">{plant.name}</span>
