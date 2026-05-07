@@ -1,4 +1,5 @@
 export interface Plant {
+    id: number,
     name: string,
     sowDepth: number,
     minGerminationDays: number,

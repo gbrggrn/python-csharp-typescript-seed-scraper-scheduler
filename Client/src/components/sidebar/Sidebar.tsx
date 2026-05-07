@@ -1,10 +1,21 @@
 import './App.css'
+import { type Plant } from '../../types/plant'
 
-const Sidebar = () => {
+interface SidebarProps {
+    plants: Plant[];
+}
+
+const Sidebar = ({plants}: SidebarProps) => {
     return (
-        <div>
-
-        </div>
+        <aside className="sidebar">
+            <div className="plant-list">
+                {plants.map(plant => (
+                    <div key={plant.id}>
+                        {plant.name}
+                    </div>
+                ))}
+            </div>
+        </aside>
     )
 }
 
