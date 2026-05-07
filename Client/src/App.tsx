@@ -7,7 +7,7 @@ import { type Plant } from './types/plant'
 import { fetchPlants } from './services/plantService'
 import './App.css'
 
-function App() {
+export function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
