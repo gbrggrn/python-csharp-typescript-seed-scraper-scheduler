@@ -10,15 +10,19 @@ import './App.css'
 function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
       try {
+        setLoading(true);
         const data = await fetchPlants();
         setPlants(data);
       } catch (err) {
         setError("Failed to load plants.");
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 

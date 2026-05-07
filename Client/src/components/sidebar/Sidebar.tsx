@@ -1,4 +1,4 @@
-import './App.css'
+
 import { type Plant } from '../../types/plant'
 
 interface SidebarProps {
