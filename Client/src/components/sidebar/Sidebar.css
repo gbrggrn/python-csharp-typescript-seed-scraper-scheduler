@@ -4,6 +4,40 @@
     color: #cccccc;
 }
 
+.search-box {
+    padding: 10px;
+    flex-shrink: 0;
+}
+
 .plant-list {
-    
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 15px;
+    background: transparent;
+    border: none;
+    color: #cccccc;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #333;
+    user-select: none;
+    outline:none;
+}
+
+.list-item:hover {
+    background-color: #2a2d2e;
+    color: #ffffff;
+}
+
+.list-item:active {
+    background-color: #37373d;
+    color: white;
+    outline: 1px solid #007acc;
 }
