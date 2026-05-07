@@ -14,11 +14,14 @@ export function App() {
   const [loading, setLoading] = useState(false);
 
   const handleToggleSelect = (id:number) => {
-    setSelectedIds((prev) => 
-      prev.includes(id)
-      ? prev.filter(idd => idd !== id)
-      : [...prev, id])
-  }
+    setSelectedIds((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter(rid => rid !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
 
   useEffect(() => {
     const loadData = async () => {
