@@ -32,6 +32,7 @@ function App() {
         <Sidebar plants={plants} />
         <Stage />
       </div>
+      {error && <div className="status-bar error">{error}</div>}
     </div>
   );
 }
