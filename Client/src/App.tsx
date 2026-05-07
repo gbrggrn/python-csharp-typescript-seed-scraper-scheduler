@@ -9,8 +9,16 @@ import './App.css'
 
 export function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const handleToggleSelect = (id:number) => {
+    setSelectedIds((prev) => 
+      prev.includes(id)
+      ? prev.filter(idd => idd !== id)
+      : [...prev, id])
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -33,7 +41,10 @@ export function App() {
     <div className="ide-wrapper">
       <Header />
       <div className="workspace">
-        <Sidebar plants={plants} />
+        <Sidebar 
+          plants={plants}
+          selectedIds={selectedIds}
+          onToggle={handleToggleSelect} />
         <Stage />
       </div>
       {error && <div className="status-bar error">{error}</div>}
