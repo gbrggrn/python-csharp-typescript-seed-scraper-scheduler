@@ -1,6 +1,6 @@
 import { type Plant } from '../types/plant';
 
-const API_URL = 'http://localhost:5239/api/plant';
+const API_URL = '/api/plant';
 
 export const fetchPlants = async (): Promise<Plant[]> => {
     const response = await fetch(API_URL);
