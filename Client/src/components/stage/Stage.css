@@ -1,0 +1,6 @@
+.stage {
+    flex: 1;
+    background: #1e1e1e;
+    border-right: 1px solid #333;
+    color: white;
+}
