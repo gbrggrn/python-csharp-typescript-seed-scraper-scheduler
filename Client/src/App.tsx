@@ -48,6 +48,18 @@ export function App() {
           plants={plants}
           selectedIds={selectedIds}
           onToggle={handleToggleSelect} />
+
+        <div id="plant-details" className="modal-overlay">
+          <div className="modal-window">
+            <div className="modal-header">
+              <h3>Plant Details</h3>
+              <a href="#" className="modal-close">X</a>
+            </div>
+            <div className="modal-body">
+              <p>PLACEHOLDER: SEED DATA TO GO HERE</p>
+            </div>
+          </div>
+        </div>
         <Stage />
       </div>
       {error && <div className="status-bar error">{error}</div>}
