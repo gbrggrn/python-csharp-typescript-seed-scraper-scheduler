@@ -6,6 +6,7 @@ interface SidebarProps {
     plants: Plant[];
     selectedIds: number[];
     onToggle: (id: number) => void;
+    onDoubleClickPlant: Plant;
 }
 
 const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
