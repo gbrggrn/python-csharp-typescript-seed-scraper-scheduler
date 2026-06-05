@@ -29,7 +29,7 @@ const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
                     />
             </div>
             <div className="plant-list">
-                {plants.map((plant) => (
+                {filteredPlants.map((plant) => (
                     <button
                         key={plant.id}
                         className={`list-item ${selectedIds.includes(plant.id) ? 'is-selected' : ''}`}
@@ -38,6 +38,10 @@ const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
                             <span className="plant-name">{plant.name}</span>
                         </button>
                 ))}
+
+                {filteredPlants.length === 0 && (
+                    <div className="no-results">No plants match "{searchTerm}"</div>
+                )}
             </div>
         </aside>
     )
