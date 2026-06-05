@@ -9,10 +9,24 @@ interface SidebarProps {
 }
 
 const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
+
+    // Local state for sidebar search query
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // Derived state for sidebar search query (filter on every keystroke)
+    const filteredPlants = plants.filter((plant) =>
+        plant.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
     return (
         <aside className="sidebar">
             <div className="search-box">
-                <input type="text" placeholder="Filter plants..." />
+                <input 
+                    type="text" 
+                    placeholder="Filter plants..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                    />
             </div>
             <div className="plant-list">
                 {plants.map((plant) => (
