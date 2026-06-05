@@ -34,6 +34,7 @@ const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
                         key={plant.id}
                         className={`list-item ${selectedIds.includes(plant.id) ? 'is-selected' : ''}`}
                         onClick={() => onToggle(plant.id)}
+                        onDoubleClick={() => window.location.hash = 'plant-details'}
                         >
                             <span className="plant-name">{plant.name}</span>
                         </button>
