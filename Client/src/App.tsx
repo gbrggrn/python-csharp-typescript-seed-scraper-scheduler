@@ -40,6 +40,8 @@ export function App() {
     loadData();
   }, []);
 
+  const [detailsPlant, setDetailsPlant] = useState<Plant | null>(null);
+
   return (
     <div className="ide-wrapper">
       <Header />
@@ -47,19 +49,22 @@ export function App() {
         <Sidebar 
           plants={plants}
           selectedIds={selectedIds}
-          onToggle={handleToggleSelect} />
+          onToggle={handleToggleSelect}
+          onDoubleClick={(plant) => setDetailsPlant(plant)} />
 
-        <div id="plant-details" className="modal-overlay">
-          <div className="modal-window">
-            <div className="modal-header">
-              <h3>Plant Details</h3>
-              <a href="#" className="modal-close">X</a>
-            </div>
-            <div className="modal-body">
-              <p>PLACEHOLDER: SEED DATA TO GO HERE</p>
+        {detailsPlant && (
+          <div className="modal-overlay" onClick={() => setDetailsPlant(null)}>
+            <div className="modal-window" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3>Plant Details</h3>
+                <button className="modal-close" onClick={() => setDetailsPlant(null)}>X</button>
+              </div>
+              <div className="modal-body">
+                <p>PLANT DETAILS GO HERE</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <Stage />
       </div>
       {error && <div className="status-bar error">{error}</div>}
