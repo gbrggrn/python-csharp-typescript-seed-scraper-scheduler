@@ -1,5 +1,6 @@
 import './Sidebar.css'
 import { type Plant } from '../../types/plant'
+import { useState } from 'react';
 
 interface SidebarProps {
     plants: Plant[];
