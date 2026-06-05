@@ -10,3 +10,42 @@
   flex: 1;
   background: #252526;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+.modal-overlay:target {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.modal-window {
+  background: #2d2d2d;
+  border: 1px solid #3c3c3c;
+  color: #fff;
+  min-width: 400px;
+  padding: 20px;
+}
+
+.modal-close {
+  color: #ccc;
+  text-decoration: none;
+  float: right;
+}
+
+.modal-close:hover {
+  color: #ff453a;
+}
