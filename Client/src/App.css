@@ -21,15 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
   z-index: 9999;
-}
-
-.modal-overlay:target {
-  opacity: 1;
-  pointer-events: none;
 }
 
 .modal-window {
@@ -41,9 +33,12 @@
 }
 
 .modal-close {
+  background: transparent;
+  border: none;
   color: #ccc;
-  text-decoration: none;
+  cursor: pointer;
   float: right;
+  font-size: 1.2rem;
 }
 
 .modal-close:hover {
