@@ -50,7 +50,7 @@ export function App() {
           plants={plants}
           selectedIds={selectedIds}
           onToggle={handleToggleSelect}
-          onDoubleClick={(plant) => setDetailsPlant(plant)} />
+          onDoubleClickPlant={(plant) => setDetailsPlant(plant)} />
 
         {detailsPlant && (
           <div className="modal-overlay" onClick={() => setDetailsPlant(null)}>

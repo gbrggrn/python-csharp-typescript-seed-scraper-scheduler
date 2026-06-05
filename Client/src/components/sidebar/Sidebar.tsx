@@ -6,10 +6,10 @@ interface SidebarProps {
     plants: Plant[];
     selectedIds: number[];
     onToggle: (id: number) => void;
-    onDoubleClickPlant: Plant;
+    onDoubleClickPlant: (Plant: Plant) => void;
 }
 
-const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
+const Sidebar = ({plants, selectedIds, onToggle, onDoubleClickPlant}: SidebarProps) => {
 
     // Local state for sidebar search query
     const [searchTerm, setSearchTerm] = useState('');
@@ -35,7 +35,7 @@ const Sidebar = ({plants, selectedIds, onToggle}: SidebarProps) => {
                         key={plant.id}
                         className={`list-item ${selectedIds.includes(plant.id) ? 'is-selected' : ''}`}
                         onClick={() => onToggle(plant.id)}
-                        onDoubleClick={() => window.location.hash = 'plant-details'}
+                        onDoubleClick={() => onDoubleClickPlant(plant)}
                         >
                             <span className="plant-name">{plant.name}</span>
                         </button>
