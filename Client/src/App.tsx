@@ -61,13 +61,13 @@ export function App() {
               </div>
               <div className="modal-body">
                 <p>Tidigast sådd: { monthHelper(detailsPlant.minSowMonth) }</p>
-                <p>Senast sådd: { detailsPlant.maxSowMonth }</p>
-                <p>Tidigast grodd: { detailsPlant.minGerminationDays }</p>
-                <p>Senaste grodd: { detailsPlant.maxGerminationDays }</p>
+                <p>Senast sådd: { monthHelper(detailsPlant.maxSowMonth) }</p>
+                <p>Tidigast grodd: { detailsPlant.minGerminationDays } dagar</p>
+                <p>Senaste grodd: { detailsPlant.maxGerminationDays } dagar</p>
                 <p>Plantavstånd: { detailsPlant.plantSpacing }cm</p>
                 <p>Radavstånd: { detailsPlant.rowSpacing }cm</p>
-                <p>Tidigast skörd: { detailsPlant.minHarvestMonth }</p>
-                <p>Senast skörd: { detailsPlant.maxHarvestMonth }</p>
+                <p>Tidigast skörd: { monthHelper(detailsPlant.minHarvestMonth) }</p>
+                <p>Senast skörd: { monthHelper(detailsPlant.maxHarvestMonth) }</p>
                 <p>Maxhöjd: { detailsPlant.maxHeight }cm</p>
               </div>
             </div>
