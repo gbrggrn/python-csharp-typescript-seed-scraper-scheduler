@@ -56,11 +56,19 @@ export function App() {
           <div className="modal-overlay" onClick={() => setDetailsPlant(null)}>
             <div className="modal-window" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
-                <h3>Plant Details</h3>
+                <h3>Plant Details: { detailsPlant.name }</h3>
                 <button className="modal-close" onClick={() => setDetailsPlant(null)}>X</button>
               </div>
               <div className="modal-body">
-                <p>PLANT DETAILS GO HERE</p>
+                <p>Tidigast sådd: { monthHelper(detailsPlant.minSowMonth) }</p>
+                <p>Senast sådd: { detailsPlant.maxSowMonth }</p>
+                <p>Tidigast grodd: { detailsPlant.minGerminationDays }</p>
+                <p>Senaste grodd: { detailsPlant.maxGerminationDays }</p>
+                <p>Plantavstånd: { detailsPlant.plantSpacing }cm</p>
+                <p>Radavstånd: { detailsPlant.rowSpacing }cm</p>
+                <p>Tidigast skörd: { detailsPlant.minHarvestMonth }</p>
+                <p>Senast skörd: { detailsPlant.maxHarvestMonth }</p>
+                <p>Maxhöjd: { detailsPlant.maxHeight }cm</p>
               </div>
             </div>
           </div>
@@ -70,4 +78,33 @@ export function App() {
       {error && <div className="status-bar error">{error}</div>}
     </div>
   );
+}
+
+function monthHelper (month: number): string {
+  if (month == 1)
+    return 'januari'
+  if (month == 2)
+    return 'februari'
+  if (month == 3)
+    return 'mars'
+  if (month == 4)
+    return 'april'
+  if (month == 5)
+    return 'maj'
+  if (month == 6)
+    return 'juni'
+  if (month == 7)
+    return 'juli'
+  if (month == 8)
+    return 'augusti'
+  if (month == 9)
+    return 'september'
+  if (month == 10)
+    return 'oktober'
+  if (month == 11)
+    return 'november'
+  if (month == 12)
+    return 'december'
+  else
+    return 'ingen månad registrerad'
 }
