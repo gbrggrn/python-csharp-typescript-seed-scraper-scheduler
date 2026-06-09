@@ -1,3 +1,4 @@
+import './Stage.css'
 import { type Plant } from '../../types/plant'
 
 interface StageProps {
