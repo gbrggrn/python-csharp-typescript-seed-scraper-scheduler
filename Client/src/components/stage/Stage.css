@@ -64,6 +64,27 @@
 }
 
 .sow-bar {
+    background-color: #98dcb4;
+    color: #ffffff;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #149f4c;
+    transition: all 0.2s ease;
+}
+
+.sow-bar:hover {
+    background-color: #4af391;
+    transform: scaleY(1.05);
+}
+
+.harvest-bar {
     background-color: #2a7b4c;
     color: #ffffff;
     height: 24px;
@@ -79,8 +100,8 @@
     transition: all 0.2s ease;
 }
 
-.sow-bar:hover {
-    background-color: #359a5f;
+.harvest-bar:hover {
+    background-color: #057a36;
     transform: scaleY(1.05);
 }
 
