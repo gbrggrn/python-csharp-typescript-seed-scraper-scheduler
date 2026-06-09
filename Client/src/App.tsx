@@ -73,7 +73,9 @@ export function App() {
             </div>
           </div>
         )}
-        <Stage />
+        <Stage 
+          allPlants = {plants}
+          selectedIds={selectedIds}/>
       </div>
       {error && <div className="status-bar error">{error}</div>}
     </div>
