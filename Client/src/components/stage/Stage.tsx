@@ -5,12 +5,10 @@ interface StageProps {
     allPlants: Plant[];
 }
 
-const Stage = () => {
-    return (
-        <div>
+export default function Stage({ selectedIds, allPlants }: StageProps) {
+    const activePlants = allPlants.filter(p => selectedIds.includes(p.uid))
 
-        </div>
-    )
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Okt', 'Nov', 'Dec']
+
+    
 }
-
-export default Stage;
