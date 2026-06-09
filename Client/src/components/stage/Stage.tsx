@@ -34,7 +34,13 @@ export default function Stage({ selectedIds, allPlants }: StageProps) {
                                 gridColumnStart: plant.minSowMonth + 1,
                                 gridColumnEnd: plant.maxSowMonth + 2
                             }}
-                            > Såddfönster</div>
+                            >Såddfönster</div>
+                        <div className="harvest-bar"
+                            style={{
+                                gridColumnStart: plant.minHarvestMonth + 1,
+                                gridColumnEnd: plant.maxHarvestMonth + 2
+                            }}
+                            >Skördefönster</div>
                     </div>
                 </div>
                 ))}
