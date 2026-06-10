@@ -111,3 +111,10 @@
     color: #6e6e6e;
     font-style: italic;
 }
+
+.no-data-text {
+    grid-column: 2 / 14;
+    text-align: center;
+    color: #555;
+    font-size: 0.8rem;
+}
