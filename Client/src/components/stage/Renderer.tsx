@@ -13,7 +13,7 @@ export function RenderSowTrack(plant: Plant) : React.ReactNode {
         
         case (startSow && !endSow && !startHarvest && !endHarvest):
             return (
-            <div className="timeline-track">
+            <>
                 <div className="sow-bar" 
                     style={{ 
                         gridColumnStart: startSow, 
@@ -22,11 +22,11 @@ export function RenderSowTrack(plant: Plant) : React.ReactNode {
                         Såddfönster
                 </div>
                 <span className="no-data-text">Ingen skördedata tillgänglig</span>
-            </div>);
+            </>);
 
         case (startSow && endSow && !startHarvest && !endHarvest):
             return (
-            <div className="timeline-track">
+            <>
                 <div className="sow-bar" 
                     style={{ 
                         gridColumnStart: startSow, 
@@ -35,11 +35,11 @@ export function RenderSowTrack(plant: Plant) : React.ReactNode {
                         Såddfönster
                 </div>
                 <span className="no-data-text">Ingen skördedata tillgänglig</span>
-            </div>);
+            </>);
 
         case (startSow && endSow && startHarvest && !endHarvest):
             return (
-            <div className="timeline-track">
+            <>
                 <div className="sow-bar" 
                     style={{ 
                         gridColumnStart: startSow, 
@@ -54,11 +54,11 @@ export function RenderSowTrack(plant: Plant) : React.ReactNode {
                     }}>
                         Skördefönster
                 </div>
-            </div>);
+            </>);
 
         default:
             return (
-            <div className="timeline-track">
+            <>
                 <div className="sow-bar" 
                     style={{ 
                         gridColumnStart: startSow, 
@@ -73,6 +73,6 @@ export function RenderSowTrack(plant: Plant) : React.ReactNode {
                     }}>
                         Skördefönster
                 </div>
-            </div>);
+            </>);
     }
 }
