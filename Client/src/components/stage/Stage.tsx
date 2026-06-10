@@ -31,14 +31,14 @@ export default function Stage({ selectedIds, allPlants }: StageProps) {
                     <div className="timeline-track">
                         <div className="sow-bar"
                             style={{
-                                gridColumnStart: plant.minSowMonth + 1,
-                                gridColumnEnd: plant.maxSowMonth + 2
+                                gridColumnStart: plant.minSowMonth,
+                                gridColumnEnd: plant.maxSowMonth + 1
                             }}
                             >Såddfönster</div>
                         <div className="harvest-bar"
                             style={{
-                                gridColumnStart: plant.minHarvestMonth + 1,
-                                gridColumnEnd: plant.maxHarvestMonth + 2
+                                gridColumnStart: plant.minHarvestMonth,
+                                gridColumnEnd: plant.maxHarvestMonth + 1
                             }}
                             >Skördefönster</div>
                     </div>
