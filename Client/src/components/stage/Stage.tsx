@@ -24,23 +24,32 @@ export default function Stage({ selectedIds, allPlants }: StageProps) {
 
                 {/* DATA ROWS */}
                 { activePlants.map(plant => (
+
                     <div key="{plant.id}" className="chart-row">
                         <div className="cell-name">{plant.name}</div>
 
                     {/* TIMELINE */}
                     <div className="timeline-track">
+                        { plant.minSowMonth && plant.maxSowMonth ? (
                         <div className="sow-bar"
                             style={{
                                 gridColumnStart: plant.minSowMonth,
                                 gridColumnEnd: plant.maxSowMonth + 1
-                            }}
+                        }}
                             >Såddfönster</div>
+                    ) : (
+                        <span className="no-data-text">Ingen sådata tillgänglig</span>
+                    )}
+                        { plant.minHarvestMonth && plant.maxHarvestMonth ? (
                         <div className="harvest-bar"
                             style={{
                                 gridColumnStart: plant.minHarvestMonth,
                                 gridColumnEnd: plant.maxHarvestMonth + 1
                             }}
                             >Skördefönster</div>
+                        ) : (
+                            <span className="no-data-text">Ingen skördedata tillgänglig</span>
+                        )}
                     </div>
                 </div>
                 ))}
