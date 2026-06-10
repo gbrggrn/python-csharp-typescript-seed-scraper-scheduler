@@ -1,4 +1,5 @@
 import './Stage.css'
+import { RenderTracks as RT } from './Renderer'
 import { type Plant } from '../../types/plant'
 
 interface StageProps {
@@ -30,26 +31,7 @@ export default function Stage({ selectedIds, allPlants }: StageProps) {
 
                     {/* TIMELINE */}
                     <div className="timeline-track">
-                        { plant.minSowMonth && plant.maxSowMonth ? (
-                        <div className="sow-bar"
-                            style={{
-                                gridColumnStart: plant.minSowMonth,
-                                gridColumnEnd: plant.maxSowMonth + 1
-                        }}
-                            >Såddfönster</div>
-                    ) : (
-                        <span className="no-data-text">Ingen sådata tillgänglig</span>
-                    )}
-                        { plant.minHarvestMonth && plant.maxHarvestMonth ? (
-                        <div className="harvest-bar"
-                            style={{
-                                gridColumnStart: plant.minHarvestMonth,
-                                gridColumnEnd: plant.maxHarvestMonth + 1
-                            }}
-                            >Skördefönster</div>
-                        ) : (
-                            <span className="no-data-text">Ingen skördedata tillgänglig</span>
-                        )}
+                        { RT(plant) }
                     </div>
                 </div>
                 ))}

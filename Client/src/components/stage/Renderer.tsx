@@ -1,6 +1,6 @@
 import type { Plant } from "../../types/plant";
 
-export function RenderSowTrack(plant: Plant) : React.ReactNode {
+export function RenderTracks(plant: Plant) : React.ReactNode {
     const startSow = plant.minSowMonth;
     const endSow = plant.maxSowMonth;
     const startHarvest = plant.minHarvestMonth;
