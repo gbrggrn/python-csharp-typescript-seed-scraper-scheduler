@@ -12,6 +12,7 @@ def extract_DTOs_from_data(data):
 
         dto = {
             "Name": entry['name'],
+            "Uid": entry['uid'],
             "SowDepth": 0.0,
             "MinGerminationDays": 0.0, "MaxGerminationDays": 0.0,
             "MinHeight": 0.0, "MaxHeight": 0.0,
@@ -52,7 +53,7 @@ def extract_DTOs_from_data(data):
             elif "såperiod" in key:
                 val = description[i+1]
                 print(f"{val}")
-                if "–" in val: # !!! OBSERVE: Frobanken used EN-DASHES
+                if "–" in val: # !!! OBSERVE: Frobanken uses EN-DASHES
                     parts = val.split("–")
                     dto["MinSowMonth"] = month_helper(parts[0])
                     dto["MaxSowMonth"] = month_helper(parts[1])
@@ -75,19 +76,19 @@ def extract_DTOs_from_data(data):
 
 def month_helper(month):
     months_values = {
-        "jan": 1.0,
-        "feb": 2.0,
-        "mars": 3.0,
-        "april": 4.0,
-        "maj": 5.0,
-        "juni": 6.0,
-        "juli": 7.0,
-        "augusti": 8.0,
-        "september": 9.0,
-        "oktober": 10.0,
-        "november": 11.0,
-        "december": 12.0,
-        "frost": 10.0
+        'jan': 1.0, 'januari': 1.0,
+        'feb': 2.0, 'februari': 2.0,
+        'mar': 3.0, 'mars': 3.0,
+        'apr': 4.0, 'april': 4.0,
+        'maj': 5.0,
+        'jun': 6.0, 'juni': 6.0,
+        'jul': 7.0, 'juli': 7.0,
+        'aug': 8.0, 'augusti': 8.0,
+        'sep': 9.0, 'september': 9.0,
+        'okt': 10.0, 'oktober': 10.0,
+        'nov': 11.0, 'november': 11.0,
+        'dec': 12.0, 'december': 12.0,
+        'frost': 10.0
     }
 
     if month in months_values:
