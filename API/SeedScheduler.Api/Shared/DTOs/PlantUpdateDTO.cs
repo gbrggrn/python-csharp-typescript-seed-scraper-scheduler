@@ -6,6 +6,10 @@ public class PlantUpdateDTO
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
 
+    // Description
+    public string Description { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
+
     // Growth properties
     public float SowDepth { get; set; }
     public float MinGerminationDays { get; set; }
@@ -18,5 +22,4 @@ public class PlantUpdateDTO
     public float MaxSowMonth { get; set; }
     public float MinHarvestMonth { get; set; }
     public float MaxHarvestMonth { get; set; }
-    public bool IsPerennial { get; set; }
 }
