@@ -5,6 +5,10 @@ public class PlantCreateDTO
     // Identifiers
     public string Name { get; set; } = string.Empty;
 
+    // Description
+    public string Description { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
+
     // Growth properties
     public float SowDepth { get; set; }
     public float MinGerminationDays { get; set; }
