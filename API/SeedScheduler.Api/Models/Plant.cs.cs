@@ -1,10 +1,16 @@
-﻿namespace SeedScheduler.Api.Models;
+﻿using System.ComponentModel;
+
+namespace SeedScheduler.Api.Models;
 
 public class Plant
 {
     // Identifiers
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
+
+    // Description
+    public string Description { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
 
     // Growth properties
     public float SowDepth { get; set; }
@@ -18,5 +24,4 @@ public class Plant
     public float MaxSowMonth { get; set; }
     public float MinHarvestMonth { get; set; }
     public float MaxHarvestMonth { get; set; }
-    public bool IsPerennial { get; set; }
 }
