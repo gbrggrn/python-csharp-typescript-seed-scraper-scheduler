@@ -21,6 +21,7 @@ public class PlantService
         return await _plants.Select(p => new PlantResponseDTO
         {
             Id = p.Id,
+            Uid = p.Uid,
             Name = p.Name,
             Description = p.Description,
             Url = p.Url,
@@ -43,6 +44,7 @@ public class PlantService
         var newPlant = new Plant
         {
             Name = dto.Name,
+            Uid = dto.Uid,
             Description = dto.Description,
             Url = dto.Url,
             SowDepth = dto.SowDepth,
@@ -70,6 +72,7 @@ public class PlantService
             var newPlant = new Plant
             {
                 Name = dtos[i].Name,
+                Uid = dtos[i].Uid,
                 Description = dtos[i].Description,
                 Url = dtos[i].Url,
                 SowDepth = dtos[i].SowDepth,
@@ -99,6 +102,7 @@ public class PlantService
             return false;
         
         existingPlant.Name = dto.Name;
+        existingPlant.Uid = dto.Uid;
         existingPlant.Description = dto.Description;
         existingPlant.Url = dto.Url;
         existingPlant.SowDepth = dto.SowDepth;
