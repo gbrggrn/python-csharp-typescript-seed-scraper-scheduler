@@ -14,7 +14,7 @@ def extract_DTOs_from_data(data):
             "Name": entry['name'],
             "Uid": entry['uid'],
             "Url": entry['url'],
-            "Description": entry['raw_description'],
+            "Description": entry['description_raw'],
             "SowDepth": 0.0,
             "MinGerminationDays": 0.0, "MaxGerminationDays": 0.0,
             "MinHeight": 0.0, "MaxHeight": 0.0,

@@ -90,8 +90,8 @@ def clean_response(response_json):
         url = item.get('url') if item.get('url') is not None else 'Unknown'
 
         raw_description = item.get('description', {}).get('sv', '')
-        str_description = str(raw_description)
         description_lines = clean_description(raw_description)
+        str_description = "\n".join(description_lines)
 
         object = {
             "name": name,
