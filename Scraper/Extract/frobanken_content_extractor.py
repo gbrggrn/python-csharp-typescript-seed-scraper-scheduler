@@ -86,7 +86,7 @@ def clean_response(response_json):
     for item in response_json.get('result', []):
         name = item.get('name', {}).get('sv', 'Unknown')
 
-        uid = item.get('uid')
+        uid = str(item.get('uid')) if item.get('uid') is not None else ''
         url = item.get('url') if item.get('url') is not None else 'Unknown'
 
         raw_description = item.get('description', {}).get('sv', '')
