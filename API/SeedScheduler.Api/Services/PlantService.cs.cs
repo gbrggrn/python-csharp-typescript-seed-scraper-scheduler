@@ -22,6 +22,8 @@ public class PlantService
         {
             Id = p.Id,
             Name = p.Name,
+            Description = p.Description,
+            Url = p.Url,
             SowDepth = p.SowDepth,
             MinGerminationDays = p.MinGerminationDays,
             MaxGerminationDays = p.MaxGerminationDays,
@@ -32,8 +34,7 @@ public class PlantService
             MinSowMonth = p.MinSowMonth,
             MaxSowMonth = p.MaxSowMonth,
             MinHarvestMonth = p.MinHarvestMonth,
-            MaxHarvestMonth = p.MaxHarvestMonth,
-            IsPerennial = p.IsPerennial
+            MaxHarvestMonth = p.MaxHarvestMonth
         }).ToListAsync();
     }
 
@@ -42,6 +43,8 @@ public class PlantService
         var newPlant = new Plant
         {
             Name = dto.Name,
+            Description = dto.Description,
+            Url = dto.Url,
             SowDepth = dto.SowDepth,
             MinGerminationDays = dto.MinGerminationDays,
             MaxGerminationDays = dto.MaxGerminationDays,
@@ -52,8 +55,7 @@ public class PlantService
             MinSowMonth = dto.MinSowMonth,
             MaxSowMonth = dto.MaxSowMonth,
             MinHarvestMonth = dto.MinHarvestMonth,
-            MaxHarvestMonth = dto.MaxHarvestMonth,
-            IsPerennial = dto.IsPerennial
+            MaxHarvestMonth = dto.MaxHarvestMonth
         };
 
         await _plants.AddAsync(newPlant);
@@ -68,6 +70,8 @@ public class PlantService
             var newPlant = new Plant
             {
                 Name = dtos[i].Name,
+                Description = dtos[i].Description,
+                Url = dtos[i].Url,
                 SowDepth = dtos[i].SowDepth,
                 MinGerminationDays = dtos[i].MinGerminationDays,
                 MaxGerminationDays = dtos[i].MaxGerminationDays,
@@ -78,8 +82,7 @@ public class PlantService
                 MinSowMonth = dtos[i].MinSowMonth,
                 MaxSowMonth = dtos[i].MaxSowMonth,
                 MinHarvestMonth = dtos[i].MinHarvestMonth,
-                MaxHarvestMonth = dtos[i].MaxHarvestMonth,
-                IsPerennial = dtos[i].IsPerennial
+                MaxHarvestMonth = dtos[i].MaxHarvestMonth
             };
 
             plants.Add(newPlant);
@@ -96,6 +99,8 @@ public class PlantService
             return false;
         
         existingPlant.Name = dto.Name;
+        existingPlant.Description = dto.Description;
+        existingPlant.Url = dto.Url;
         existingPlant.SowDepth = dto.SowDepth;
         existingPlant.MinGerminationDays = dto.MinGerminationDays;
         existingPlant.MaxGerminationDays = dto.MaxGerminationDays;
@@ -107,7 +112,6 @@ public class PlantService
         existingPlant.MaxSowMonth = dto.MaxSowMonth;
         existingPlant.MinHarvestMonth = dto.MinHarvestMonth;
         existingPlant.MaxHarvestMonth = dto.MaxHarvestMonth;
-        existingPlant.IsPerennial = dto.IsPerennial;
 
         _plants.Update(existingPlant);
         await _dbContext.SaveChangesAsync();
