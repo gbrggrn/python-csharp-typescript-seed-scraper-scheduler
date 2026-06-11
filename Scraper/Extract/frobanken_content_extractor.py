@@ -90,13 +90,15 @@ def clean_response(response_json):
         url = item.get('url') if item.get('url') is not None else 'Unknown'
 
         raw_description = item.get('description', {}).get('sv', '')
+        str_description = str(raw_description)
         description_lines = clean_description(raw_description)
 
         object = {
             "name": name,
             "description": description_lines,
             "uid": uid,
-            "url": url
+            "url": url,
+            "description_raw": str_description
         }
 
         packaged_data.append(object)
