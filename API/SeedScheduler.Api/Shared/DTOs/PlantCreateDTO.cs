@@ -4,6 +4,7 @@ public class PlantCreateDTO
 {
     // Identifiers
     public string Name { get; set; } = string.Empty;
+    public string Uid { get; set; } = string.Empty;
 
     // Description
     public string Description { get; set; } = string.Empty;
