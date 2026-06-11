@@ -13,6 +13,7 @@ def extract_DTOs_from_data(data):
         dto = {
             "Name": entry['name'],
             "Uid": entry['uid'],
+            "Description": entry['description'],
             "SowDepth": 0.0,
             "MinGerminationDays": 0.0, "MaxGerminationDays": 0.0,
             "MinHeight": 0.0, "MaxHeight": 0.0,
