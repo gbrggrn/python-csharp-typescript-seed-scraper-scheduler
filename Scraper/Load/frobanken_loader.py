@@ -10,7 +10,8 @@ def load(data):
         response = requests.post(url, json = payload)
 
         if not response.ok:
-            print(f"Something went wrong. Code: {response}")
+            print(f"Something went wrong. Code: {response.status_code}")
+            print(f"Error details: {response.text}")
             fails = fails + 1
         else:
             successes = successes + 1
