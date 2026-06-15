@@ -6,10 +6,11 @@ interface SidebarProps {
     plants: Plant[];
     selectedIds: number[];
     onToggle: (id: number) => void;
+    onClear: () => void;
     onDoubleClickPlant: (Plant: Plant) => void;
 }
 
-const Sidebar = ({plants, selectedIds, onToggle, onDoubleClickPlant}: SidebarProps) => {
+const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant}: SidebarProps) => {
 
     // Local state for sidebar search query
     const [searchTerm, setSearchTerm] = useState('');
@@ -20,6 +21,13 @@ const Sidebar = ({plants, selectedIds, onToggle, onDoubleClickPlant}: SidebarPro
 
     return (
         <aside className="sidebar">
+            <div className="clear-btn">
+                <button
+                    onClick={() => onClear()}
+                    >
+                        Rensa
+                    </button>
+            </div>
             <div className="search-box">
                 <input 
                     type="text" 
