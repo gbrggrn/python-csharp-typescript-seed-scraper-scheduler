@@ -41,6 +41,7 @@ export function App() {
   }, []);
 
   const [detailsPlant, setDetailsPlant] = useState<Plant | null>(null);
+  const clearSelectedIds = () => { setSelectedIds([])}
 
   return (
     <div className="ide-wrapper">
@@ -50,6 +51,7 @@ export function App() {
           plants={plants}
           selectedIds={selectedIds}
           onToggle={handleToggleSelect}
+          onClear={clearSelectedIds}
           onDoubleClickPlant={(plant) => setDetailsPlant(plant)} />
 
         {detailsPlant && (
