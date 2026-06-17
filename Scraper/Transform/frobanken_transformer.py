@@ -71,6 +71,9 @@ def extract_DTOs_from_data(data):
     return extracted_DTOs
 
 def month_helper(month):
+    if not month:
+        return 0.0
+    
     months_values = {
         'jan': 1.0, 'januari': 1.0,
         'feb': 2.0, 'februari': 2.0,
