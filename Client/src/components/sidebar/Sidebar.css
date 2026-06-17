@@ -36,6 +36,39 @@
     box-shadow: 0 0 0 3px #795151;
 }
 
+.clear-btn {
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.clear-btn button {
+    cursor: pointer;
+    padding: 8px 12px;
+    width: 100%;
+    background-color: #dbd7bd;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.clear-btn button:hover {
+    background-color: #cfcaba;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clear-btn button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.clear-btn button:focus-visible {
+    outline: 2px solid;
+    outline-offset: 2px;
+}
+
 .plant-list {
     flex-grow: 1;
     overflow-y: auto;
