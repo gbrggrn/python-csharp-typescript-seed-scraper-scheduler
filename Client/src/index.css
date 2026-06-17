@@ -30,6 +30,17 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+
+  *,
+  *::before,
+  *::after,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    color: inherit;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
