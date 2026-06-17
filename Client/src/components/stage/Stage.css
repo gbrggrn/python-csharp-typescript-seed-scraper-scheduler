@@ -1,14 +1,14 @@
 .stage {
     flex: 1;
     padding: 20px;
-    background-color: #1e1e1e;
+    background-color: #dbd7bd;
     color: #ffffff;
     overflow-y: auto;
 }
 
 .gantt-chart {
     border: 1px solid #333;
-    background-color: #256256;
+    background-color: #dbd7bd;
     border-radius: 4px;
     overflow: hidden;
     margin-top: 15px;
@@ -23,11 +23,11 @@
 }
 
 .header-row {
-    background-color: #2d2d2d;
+    background-color: #dbd7bd;
     border-bottom: 2px solid #3e3e3e;
     font-weight: bold;
     font-size: 0.85rem;
-    color: #007acc;
+    color: #333;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -35,6 +35,7 @@
 .cell-name {
     padding: 0 15px;
     font-size: 0.9rem;
+    color: #333;
     border-right: 1px solid #333;
     height: 100%;
     display: flex;
@@ -65,7 +66,7 @@
 
 .sow-bar {
     background-color: #98dcb4;
-    color: #ffffff;
+    color: #333;
     height: 24px;
     border-radius: 4px;
     display: flex;
@@ -86,7 +87,7 @@
 
 .harvest-bar {
     background-color: #2a7b4c;
-    color: #ffffff;
+    color: #333;
     height: 24px;
     border-radius: 4px;
     display: flex;
@@ -108,13 +109,13 @@
 .empty-stage {
     padding: 40px;
     text-align: center;
-    color: #6e6e6e;
+    color: #333;
     font-style: italic;
 }
 
 .no-data-text {
     grid-column: 2 / 14;
     text-align: center;
-    color: #555;
+    color: #333;
     font-size: 0.8rem;
 }
