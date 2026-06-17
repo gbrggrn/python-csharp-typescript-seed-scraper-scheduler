@@ -5,7 +5,6 @@
     flex-direction: column;
     background: var(--bg);
     color: var(--text);
-    border-left: 1px solid var(--border);
     position: sticky;
     top: 0;
 }
