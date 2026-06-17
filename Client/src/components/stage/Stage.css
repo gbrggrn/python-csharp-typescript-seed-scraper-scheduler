@@ -1,14 +1,14 @@
 .stage {
     flex: 1;
     padding: 20px;
-    background-color: #dbd7bd;
-    color: #ffffff;
+    background-color: var(--bg);
+    color: var(--text);
     overflow-y: auto;
 }
 
 .gantt-chart {
-    border: 1px solid #333;
-    background-color: #dbd7bd;
+    border: 1px solid var(--border);
+    background-color: var(--bg);
     border-radius: 4px;
     overflow: hidden;
     margin-top: 15px;
@@ -18,16 +18,16 @@
     display: grid;
     grid-template-columns: 200px repeat(12, 1fr);
     align-items: center;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--border);
     min-height: 40px;
 }
 
 .header-row {
-    background-color: #dbd7bd;
-    border-bottom: 2px solid #3e3e3e;
+    background-color: var(--bg);
+    border-bottom: 2px solid var(--border);
     font-weight: bold;
     font-size: 0.85rem;
-    color: #333;
+    color: var(--text);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -35,8 +35,8 @@
 .cell-name {
     padding: 0 15px;
     font-size: 0.9rem;
-    color: #333;
-    border-right: 1px solid #333;
+    color: var(--text);
+    border-right: 1px solid var(--border);
     height: 100%;
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@
 .cell-month {
     text-align: center;
     font-size: 0.8rem;
-    border-right: 1px solid #333;
+    border-right: 1px solid var(--border);
     height: 100%;
     display: flex;
     align-items: center;
@@ -66,7 +66,7 @@
 
 .sow-bar {
     background-color: #98dcb4;
-    color: #333;
+    color: var(--text);
     height: 24px;
     border-radius: 4px;
     display: flex;
@@ -87,7 +87,7 @@
 
 .harvest-bar {
     background-color: #2a7b4c;
-    color: #333;
+    color: var(--text);
     height: 24px;
     border-radius: 4px;
     display: flex;
@@ -96,7 +96,7 @@
     font-size: 0.75rem;
     font-weight: 600;
     margin: 0 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--border);
     border: 1px solid #3b9c62;
     transition: all 0.2s ease;
 }
