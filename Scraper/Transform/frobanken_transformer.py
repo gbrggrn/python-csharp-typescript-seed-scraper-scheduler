@@ -74,6 +74,8 @@ def month_helper(month):
     if not month:
         return 0.0
     
+    month_lower = str(month).lower().strip()
+
     months_values = {
         'jan': 1.0, 'januari': 1.0,
         'feb': 2.0, 'februari': 2.0,
@@ -91,7 +93,7 @@ def month_helper(month):
     }
 
     for key, value in months_values.items():
-        if key in month:
+        if key in month_lower:
             return value
     else:
         return 0.0
