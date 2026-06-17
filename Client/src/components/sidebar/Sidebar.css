@@ -15,6 +15,27 @@
     flex-shrink: 0;
 }
 
+.search-box input {
+    width: 100%;
+    background-color: #dbd7bd;
+    color: #333;
+    border: 1px solid #333;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box input::placeholder {
+    color: #686767;
+    opacity: 1;
+}
+
+.search-box input::focus {
+    border-color: #795151;
+    box-shadow: 0 0 0 3px #795151;
+}
+
 .plant-list {
     flex-grow: 1;
     overflow-y: auto;
