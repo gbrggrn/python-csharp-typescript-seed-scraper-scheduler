@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #dbd7bd;
+  background: var(--bg);
 }
 
 .workspace {
   display: flex;
   flex: 1;
-  background: #dbd7bd;
+  background: var(--bg);
 }
 
 .modal-overlay {
@@ -25,9 +25,9 @@
 }
 
 .modal-window {
-  background: #2d2d2d;
-  border: 1px solid #3c3c3c;
-  color: #fff;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
   min-width: 400px;
   padding: 20px;
 }
@@ -35,7 +35,7 @@
 .modal-close {
   background: transparent;
   border: none;
-  color: #ccc;
+  color: #333;
   cursor: pointer;
   float: right;
   font-size: 1.2rem;
