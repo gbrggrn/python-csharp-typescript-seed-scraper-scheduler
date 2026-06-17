@@ -31,7 +31,7 @@ const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant}: S
             <div className="search-box">
                 <input 
                     type="text" 
-                    placeholder="Filter plants..."
+                    placeholder="Sök grönsaker..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     />
