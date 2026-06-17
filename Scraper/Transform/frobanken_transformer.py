@@ -87,10 +87,11 @@ def month_helper(month):
         'frost': 10.0
     }
 
-    if month in months_values:
-        return months_values[month]
+    for key, value in months_values.items():
+        if key in month:
+            return value
     else:
-        return 0
+        return 0.0
     
 def parse_range(value_str):
     # Find all numbers replace commas with dots
