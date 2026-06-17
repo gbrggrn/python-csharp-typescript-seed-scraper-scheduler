@@ -11,6 +11,10 @@
   background: var(--bg);
 }
 
+.modal-header {
+  display: flex;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -25,6 +29,7 @@
 }
 
 .modal-window {
+  position: relative;
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text);
@@ -33,12 +38,22 @@
 }
 
 .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
   background: transparent;
   border: none;
   color: #333;
   cursor: pointer;
   float: right;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
 .modal-close:hover {
