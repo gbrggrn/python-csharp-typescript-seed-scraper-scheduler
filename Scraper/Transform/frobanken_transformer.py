@@ -34,27 +34,21 @@ def extract_DTOs_from_data(data):
 
             if "sådjup" in key:
                 val = description[i+1]
-                print(f"{val}")
                 dto["SowDepth"], _ = parse_range(val)
             elif "grotid" in key:
                 val = description[i+1]
-                print(f"{val}")
                 dto["MinGerminationDays"], dto["MaxGerminationDays"] = map(int, parse_range(val))
             elif "höjd" in key:
                 val = description[i+1]
-                print(f"{val}")
                 dto["MinHeight"], dto["MaxHeight"] = map(int, parse_range(val))
             elif "radavstånd" in key:
                 val = description[i+1]
-                print(f"{val}")
                 dto["RowSpacing"], _ = parse_range(val)
             elif "plantavstånd" in key:
                 val = description[i+1]
-                print(f"{val}")
                 dto["PlantSpacing"], _ = parse_range(val)
             elif "såperiod" in key:
                 val = description[i+1]
-                print(f"{val}")
                 if "–" in val: # !!! OBSERVE: Frobanken uses EN-DASHES
                     parts = val.split("–")
                     dto["MinSowMonth"] = month_helper(parts[0])
