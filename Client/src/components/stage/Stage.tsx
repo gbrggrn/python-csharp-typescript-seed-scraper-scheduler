@@ -10,7 +10,7 @@ interface StageProps {
 export default function Stage({ selectedIds, allPlants }: StageProps) {
     const activePlants = allPlants.filter(p => selectedIds.includes(p.id))
 
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Okt', 'Nov', 'Dec']
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Okt', 'Nov', 'Dec']
 
     return (
         <main className="stage">
