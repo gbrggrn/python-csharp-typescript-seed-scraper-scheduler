@@ -58,7 +58,7 @@ export function App() {
           <div className="modal-overlay" onClick={() => setDetailsPlant(null)}>
             <div className="modal-window" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
-                <h3>Plant Details: { detailsPlant.name }</h3>
+                <h3>{ detailsPlant.name }</h3>
                 <button className="modal-close" onClick={() => setDetailsPlant(null)}>X</button>
               </div>
               <div className="modal-body">
