@@ -3,9 +3,9 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #dbd7bd;
-    color: #333;
-    border-left: 1px solid #333;
+    background: var(--bg);
+    color: var(--text);
+    border-left: 1px solid var(--border);
     position: sticky;
     top: 0;
 }
@@ -17,9 +17,9 @@
 
 .search-box input {
     width: 100%;
-    background-color: #dbd7bd;
-    color: #333;
-    border: 1px solid #333;
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
     padding: 8px 12px;
     border-radius: 6px;
     box-sizing: border-box;
@@ -45,12 +45,12 @@
     cursor: pointer;
     padding: 8px 12px;
     width: 100%;
-    background-color: #dbd7bd;
-    color: #333;
-    border: 1px solid #333;
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
     border-radius: 6px;
     transition: all 0.15s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px var(--border);
 }
 
 .clear-btn button:hover {
@@ -100,5 +100,5 @@
 .list-item.is-selected {
     background-color: #615e4c;
     color: white;
-    outline: 1px solid #333;
+    outline: 1px solid var(--border);
 }
