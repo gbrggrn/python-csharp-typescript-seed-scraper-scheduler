@@ -26,7 +26,7 @@
 }
 
 .search-box input::placeholder {
-    color: #686767;
+    color: var(--text);
     opacity: 1;
 }
 
@@ -73,6 +73,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 5px;
+    scrollbar-color: #615e4c var(--bg);
 }
 
 .list-item {
