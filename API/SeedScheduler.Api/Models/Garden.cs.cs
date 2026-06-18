@@ -9,5 +9,5 @@ public class Garden
     public float Latitude { get; set; }
 
     public int AverageFirstFrostDay { get; set; } // (1-365)
-    public int AverageLastFrostDay { get; set } // (1-365)
+    public int AverageLastFrostDay { get; set; } // (1-365)
 }
