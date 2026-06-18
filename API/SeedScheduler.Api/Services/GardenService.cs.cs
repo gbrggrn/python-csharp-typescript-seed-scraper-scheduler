@@ -23,7 +23,9 @@ public class GardenService
             Id = g.Id,
             Name = g.Name,
             Longitude = g.Longitude,
-            Latitude = g.Latitude
+            Latitude = g.Latitude,
+            AverageLastFrostDay = g.AverageLastFrostDay,
+            AverageFirstFrostDay = g.AverageFirstFrostDay
         }).ToListAsync();
     }
 
