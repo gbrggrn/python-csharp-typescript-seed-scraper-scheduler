@@ -8,9 +8,10 @@ interface SidebarProps {
     onToggle: (id: number) => void;
     onClear: () => void;
     onDoubleClickPlant: (Plant: Plant) => void;
+    onAddGarden: () => void;
 }
 
-const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant}: SidebarProps) => {
+const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant, onAddGarden}: SidebarProps) => {
 
     // Local state for sidebar search query
     const [searchTerm, setSearchTerm] = useState('');
@@ -21,11 +22,21 @@ const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant}: S
 
     return (
         <aside className="sidebar">
+            <div className="add-garden-btn">
+                <button
+                    onClick={() => onAddGarden()}
+                    >
+                        Lägg till trädgård
+                    </button>
+            </div>
+            <div className="garden-list">
+
+            </div>
             <div className="clear-btn">
                 <button
                     onClick={() => onClear()}
                     >
-                        Rensa
+                        Rensa schema
                     </button>
             </div>
             <div className="search-box">
