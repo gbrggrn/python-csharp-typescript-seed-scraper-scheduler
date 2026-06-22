@@ -35,12 +35,12 @@
     box-shadow: 0 0 0 3px #795151;
 }
 
-.clear-btn {
+.clear-btn, .add-garden-btn {
     padding: 10px;
     flex-shrink: 0;
 }
 
-.clear-btn button {
+.clear-btn button, .add-garden-btn button {
     cursor: pointer;
     padding: 8px 12px;
     width: 100%;
@@ -52,18 +52,18 @@
     box-shadow: 0 2px 4px var(--border);
 }
 
-.clear-btn button:hover {
+.clear-btn button:hover, .add-garden-btn button:hover {
     background-color: #cfcaba;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.clear-btn button:active {
+.clear-btn button:active, .add-garden-btn button:active {
     transform: translateY(1px);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.clear-btn button:focus-visible {
+.clear-btn button:focus-visible, .add-garden-btn button:active {
     outline: 2px solid;
     outline-offset: 2px;
 }
