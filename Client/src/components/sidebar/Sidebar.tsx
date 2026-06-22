@@ -8,7 +8,7 @@ interface SidebarProps {
     onToggle: (id: number) => void;
     onClear: () => void;
     onDoubleClickPlant: (Plant: Plant) => void;
-    onAddGarden: () => void;
+    onAddGarden: (boolean: true) => void;
 }
 
 const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant, onAddGarden}: SidebarProps) => {
@@ -24,7 +24,7 @@ const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant, on
         <aside className="sidebar">
             <div className="add-garden-btn">
                 <button
-                    onClick={() => onAddGarden()}
+                    onClick={() => onAddGarden(true)}
                     >
                         Lägg till trädgård
                     </button>

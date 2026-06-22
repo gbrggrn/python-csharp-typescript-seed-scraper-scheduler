@@ -4,6 +4,7 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Stage from './components/stage/Stage'
 import { type Plant } from './types/plant'
+import { type Garden } from './types/garden'
 import { fetchPlants } from './services/plantService'
 import './App.css'
 
@@ -27,8 +28,8 @@ export function App() {
     const loadData = async () => {
       try {
         setLoading(true);
-        const data = await fetchPlants();
-        setPlants(data);
+        const plants = await fetchPlants();
+        setPlants(plants);
       } catch (err) {
         setError("Failed to load plants.");
         console.error(err);
@@ -43,6 +44,7 @@ export function App() {
   const [detailsPlant, setDetailsPlant] = useState<Plant | null>(null);
   const [detailsGarden, setDetailsGarden] = useState<Garden | null>(null);
   const clearSelectedIds = () => { setSelectedIds([])}
+  const [isGardenModal, setIsGardenModal] = useState<false | true>(Boolean);
 
   return (
     <div className="ide-wrapper">
@@ -53,7 +55,8 @@ export function App() {
           selectedIds={selectedIds}
           onToggle={handleToggleSelect}
           onClear={clearSelectedIds}
-          onDoubleClickPlant={(plant) => setDetailsPlant(plant)} />
+          onDoubleClickPlant={(plant) => setDetailsPlant(plant)}
+          onAddGarden={() => setIsGardenModal(true)} />
 
         {detailsPlant && (
           <div className="modal-overlay" onClick={() => setDetailsPlant(null)}>
@@ -75,6 +78,10 @@ export function App() {
               </div>
             </div>
           </div>
+        )}
+
+        {isGardenModal && (
+          
         )}
         <Stage 
           allPlants = {plants}

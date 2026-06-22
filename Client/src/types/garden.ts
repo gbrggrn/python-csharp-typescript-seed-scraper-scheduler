@@ -1,4 +1,4 @@
-export interface garden {
+export interface Garden {
     id: number,
     name: string,
     longitude: number,
