@@ -41,6 +41,7 @@ export function App() {
   }, []);
 
   const [detailsPlant, setDetailsPlant] = useState<Plant | null>(null);
+  const [detailsGarden, setDetailsGarden] = useState<Garden | null>(null);
   const clearSelectedIds = () => { setSelectedIds([])}
 
   return (
