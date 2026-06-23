@@ -81,7 +81,17 @@ export function App() {
         )}
 
         {isGardenModal && (
-          
+          <div className="modal-overlay" onClick={() => setIsGardenModal(false)}>
+            <div className="modal-window" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3>Lägg till en trädgård</h3>
+                <button className="modal-close" onClick={() => setIsGardenModal(false)}>X</button>
+              </div>
+              <div className="modal-body">
+                <input 
+              </div>
+            </div>
+          </div>
         )}
         <Stage 
           allPlants = {plants}
