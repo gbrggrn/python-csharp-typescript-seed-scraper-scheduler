@@ -91,7 +91,7 @@ export function App() {
                 <button className="modal-close" onClick={() => setIsGardenModal(false)}>X</button>
               </div>
               <div className="modal-body">
-                <input 
+                <form onSubmit=
               </div>
             </div>
           </div>
