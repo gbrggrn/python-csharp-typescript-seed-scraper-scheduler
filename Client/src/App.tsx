@@ -100,7 +100,7 @@ export function App() {
                 <button className="modal-close" onClick={() => setIsGardenModal(false)}>X</button>
               </div>
               <div className="modal-body">
-                <form onSubmit={addGarden}>
+                <form onSubmit={addGarden} className="add-garden-form">
                   <input
                     type="text"
                     placeholder="Namn på trädgård"
