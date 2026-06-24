@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { type SubmitEvent } from 'react'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Stage from './components/stage/Stage'
@@ -49,7 +49,9 @@ export function App() {
   const [gardenName, setGardenName] = useState<string>("");
   const [lat, setLat] = useState<string>("");
   const [lon, setLon] = useState<string>("");
-  async function addGarden() {
+  async function addGarden(e: SubmitEvent) {
+    e.preventDefault();
+
     var response = await postGarden(gardenName, lat, lon);
     if (response) {
       setIsGardenModal(false)
