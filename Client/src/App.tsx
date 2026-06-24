@@ -45,6 +45,9 @@ export function App() {
   const [detailsGarden, setDetailsGarden] = useState<Garden | null>(null);
   const clearSelectedIds = () => { setSelectedIds([])}
   const [isGardenModal, setIsGardenModal] = useState<false | true>(Boolean);
+  const [gardenName, setGardenName] = useState<string>("");
+  const [lat, setLat] = useState<string>("");
+  const [lon, setLon] = useState<string>("");
 
   return (
     <div className="ide-wrapper">
