@@ -12,7 +12,7 @@ export const fetchGardens = async (): Promise<Garden[]> => {
     return response.json();
 }
 
-export default async function postGarden(name: string, lat: string, lon: string): Promise<boolean> {
+export async function postGarden(name: string, lat: string, lon: string): Promise<boolean> {
     const payload = {
         Name: name,
         Latitude: parseFloat(lat),

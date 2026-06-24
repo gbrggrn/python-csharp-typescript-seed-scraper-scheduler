@@ -6,6 +6,7 @@ import Stage from './components/stage/Stage'
 import { type Plant } from './types/plant'
 import { type Garden } from './types/garden'
 import { fetchPlants } from './services/plantService'
+import { postGarden } from './services/gardenService'
 import './App.css'
 
 export function App() {
@@ -48,6 +49,14 @@ export function App() {
   const [gardenName, setGardenName] = useState<string>("");
   const [lat, setLat] = useState<string>("");
   const [lon, setLon] = useState<string>("");
+  async function addGarden() {
+    var response = await postGarden(gardenName, lat, lon);
+    if (response) {
+      setIsGardenModal(false)
+    } else {
+      setIsGardenModal(true)
+    }
+  }
 
   return (
     <div className="ide-wrapper">
@@ -91,7 +100,25 @@ export function App() {
                 <button className="modal-close" onClick={() => setIsGardenModal(false)}>X</button>
               </div>
               <div className="modal-body">
-                <form onSubmit=
+                <form onSubmit={addGarden}>
+                  <input
+                    type="text"
+                    placeholder="Namn på trädgård"
+                    value="name"
+                    onChange={(e) => setGardenName(e.target.value)}/>
+                  <input 
+                    type="text"
+                    placeholder="Latitude"
+                    value={lat}
+                    onChange={(e) => setLat(e.target.value)}/>
+                  <input 
+                    type="text"
+                    placeholder="Longitude"
+                    value={lon}
+                    onChange={(e) => setLon(e.target.value)}/>
+
+                  <button type="submit" className="clear-btn">Spara</button>
+                </form>
               </div>
             </div>
           </div>
