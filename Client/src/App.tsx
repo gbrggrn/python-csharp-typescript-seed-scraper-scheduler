@@ -7,6 +7,7 @@ import Stage from './components/stage/Stage'
 import { type Plant } from './types/plant'
 import { type Garden } from './types/garden'
 import { fetchPlants } from './services/plantService'
+import { fetchGardens } from './services/gardenService'
 import { postGarden } from './services/gardenService'
 import './App.css'
 
@@ -34,8 +35,13 @@ export function App() {
         setLoading(true);
         const plants = await fetchPlants();
         setPlants(plants);
+        const gardens = await fetchGardens();
+
+        if (Array.isArray(gardens)) {
+          setGardens(gardens);
+        }
       } catch (err) {
-        setError("Kunde inte ladda frödata");
+        setError("Kunde inte ladda data");
         console.error(err);
       } finally {
         setLoading(false);

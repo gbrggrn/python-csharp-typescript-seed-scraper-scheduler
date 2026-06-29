@@ -48,8 +48,12 @@ const Gardenbar = ({gardens, selectedIds, onToggle, onDoubleClickGarden, onAddGa
                         </button>
                 ))}
 
-                {filteredGardens.length === 0 && (
+                {filteredGardens.length === 0 && gardens.length != 0 && (
                     <div className="no-results">Inga trädgårdar matchar: "{searchTerm}"</div>
+                )}
+
+                {gardens.length === 0 && (
+                    <div className="no-results">Inga trädgårdar tillagda än</div>
                 )}
             </div>
         </aside>
