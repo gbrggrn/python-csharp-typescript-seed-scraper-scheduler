@@ -32,13 +32,6 @@ const Gardenbar = ({gardens, selectedIds, onToggle, onClear, onDoubleClickGarden
             <div className="garden-list">
 
             </div>
-            <div className="clear-btn">
-                <button
-                    onClick={() => onClear()}
-                    >
-                        Rensa schema
-                    </button>
-            </div>
             <div className="search-box">
                 <input 
                     type="text" 
