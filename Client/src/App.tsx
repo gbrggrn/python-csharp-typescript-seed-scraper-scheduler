@@ -32,7 +32,7 @@ export function App() {
         const plants = await fetchPlants();
         setPlants(plants);
       } catch (err) {
-        setError("Failed to load plants.");
+        setError("Kunde inte ladda frödata");
         console.error(err);
       } finally {
         setLoading(false);
