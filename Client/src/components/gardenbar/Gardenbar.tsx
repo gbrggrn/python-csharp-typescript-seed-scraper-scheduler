@@ -29,9 +29,6 @@ const Gardenbar = ({gardens, selectedIds, onToggle, onClear, onDoubleClickGarden
                         Lägg till trädgård
                     </button>
             </div>
-            <div className="garden-list">
-
-            </div>
             <div className="search-box">
                 <input 
                     type="text" 
