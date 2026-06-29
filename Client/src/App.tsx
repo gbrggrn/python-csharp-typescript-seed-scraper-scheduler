@@ -96,8 +96,18 @@ export function App() {
             </div>
           </div>
         )}
+        <Stage 
+          allPlants = {plants}
+          selectedIds={selectedIds}/>
+        <Gardenbar 
+          gardens={gardens}
+          selectedIds={selectedIds}
+          onToggle={handleToggleSelect}
+          onClear={clearSelectedIds}
+          onDoubleClickGarden={(garden) => setDetailsGarden(garden)}
+          onAddGarden={() => setIsGardenModal(true)} />
 
-        {isGardenModal && (
+          {isGardenModal && (
           <div className="modal-overlay" onClick={() => setIsGardenModal(false)}>
             <div className="modal-window" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
@@ -128,16 +138,6 @@ export function App() {
             </div>
           </div>
         )}
-        <Stage 
-          allPlants = {plants}
-          selectedIds={selectedIds}/>
-        <Gardenbar 
-          gardens={gardens}
-          selectedIds={selectedIds}
-          onToggle={handleToggleSelect}
-          onClear={clearSelectedIds}
-          onDoubleClickGarden={(garden) => setDetailsGarden(garden)}
-          onAddGarden={() => setIsGardenModal(true)} />
       </div>
       {error && <div className="status-bar error">{error}</div>}
     </div>
