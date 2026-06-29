@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 interface GardenbarProps {
     gardens: Garden[];
-    selectedIds: number[];
+    selectedGardenIds: number[];
     onToggle: (id: number) => void;
     onDoubleClickGarden: (Garden: Garden) => void;
     onAddGarden: (boolean: true) => void;
 }
 
-const Gardenbar = ({gardens, selectedIds, onToggle, onDoubleClickGarden, onAddGarden}: GardenbarProps) => {
+const Gardenbar = ({gardens, selectedGardenIds, onToggle, onDoubleClickGarden, onAddGarden}: GardenbarProps) => {
 
     // Local state for sidebar search query
     const [searchTerm, setSearchTerm] = useState('');
@@ -40,11 +40,11 @@ const Gardenbar = ({gardens, selectedIds, onToggle, onDoubleClickGarden, onAddGa
                 {filteredGardens.map((garden) => (
                     <button
                         key={garden.id}
-                        className={`list-item ${selectedIds.includes(garden.id) ? 'is-selected' : ''}`}
+                        className={`list-item ${selectedGardenIds.includes(garden.id) ? 'is-selected' : ''}`}
                         onClick={() => onToggle(garden.id)}
                         onDoubleClick={() => onDoubleClickGarden(garden)}
                         >
-                            <span className="plant-name">{garden.name}</span>
+                            <span className="garden-name">{garden.name}</span>
                         </button>
                 ))}
 

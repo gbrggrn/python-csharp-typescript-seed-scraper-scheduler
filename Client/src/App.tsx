@@ -29,14 +29,26 @@ export function App() {
     });
   };
 
+  const handleToggleSelectGarden = (id:number) => {
+    setSelectedGardenIds((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter(rid => rid !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  }
+
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
         const plants = await fetchPlants();
-        setPlants(plants);
+        if (Array.isArray(plants)) {
+          setPlants(plants);
+        }
+        
         const gardens = await fetchGardens();
-
         if (Array.isArray(gardens)) {
           setGardens(gardens);
         }
@@ -107,8 +119,8 @@ export function App() {
           selectedIds={selectedIds}/>
         <Gardenbar 
           gardens={gardens}
-          selectedIds={selectedIds}
-          onToggle={handleToggleSelect}
+          selectedGardenIds={selectedGardenIds}
+          onToggle={handleToggleSelectGarden}
           onDoubleClickGarden={(garden) => setDetailsGarden(garden)}
           onAddGarden={() => setIsGardenModal(true)} />
 

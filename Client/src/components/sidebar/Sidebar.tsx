@@ -11,7 +11,7 @@ interface SidebarProps {
     onAddGarden: (boolean: true) => void;
 }
 
-const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant, onAddGarden}: SidebarProps) => {
+const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant}: SidebarProps) => {
 
     // Local state for sidebar search query
     const [searchTerm, setSearchTerm] = useState('');
