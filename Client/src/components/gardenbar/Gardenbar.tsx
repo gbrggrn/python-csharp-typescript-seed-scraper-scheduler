@@ -6,12 +6,11 @@ interface GardenbarProps {
     gardens: Garden[];
     selectedIds: number[];
     onToggle: (id: number) => void;
-    onClear: () => void;
     onDoubleClickGarden: (Garden: Garden) => void;
     onAddGarden: (boolean: true) => void;
 }
 
-const Gardenbar = ({gardens, selectedIds, onToggle, onClear, onDoubleClickGarden, onAddGarden}: GardenbarProps) => {
+const Gardenbar = ({gardens, selectedIds, onToggle, onDoubleClickGarden, onAddGarden}: GardenbarProps) => {
 
     // Local state for sidebar search query
     const [searchTerm, setSearchTerm] = useState('');
