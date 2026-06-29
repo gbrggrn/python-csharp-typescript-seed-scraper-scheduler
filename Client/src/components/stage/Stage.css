@@ -1,6 +1,7 @@
 .stage {
     flex: 1;
     padding: 20px;
+    min-width: 800px;
     background-color: var(--bg);
     color: var(--text);
     overflow-y: auto;
