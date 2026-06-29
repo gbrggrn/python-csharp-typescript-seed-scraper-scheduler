@@ -105,17 +105,17 @@ export function App() {
                 <form onSubmit={addGarden} className="add-garden-form">
                   <input
                     type="text"
-                    placeholder="Namn på trädgård"
+                    placeholder="Namn"
                     value="gardenName"
                     onChange={(e) => setGardenName(e.target.value)}/>
                   <input 
                     type="text"
-                    placeholder="Latitude"
+                    placeholder="Latitud"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}/>
                   <input 
                     type="text"
-                    placeholder="Longitude"
+                    placeholder="Longitud"
                     value={lon}
                     onChange={(e) => setLon(e.target.value)}/>
 
