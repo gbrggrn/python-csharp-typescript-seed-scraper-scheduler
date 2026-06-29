@@ -118,7 +118,7 @@ export function App() {
                   <input
                     type="text"
                     placeholder="Namn"
-                    value="gardenName"
+                    value={gardenName}
                     onChange={(e) => setGardenName(e.target.value)}/>
                   <input 
                     type="text"
