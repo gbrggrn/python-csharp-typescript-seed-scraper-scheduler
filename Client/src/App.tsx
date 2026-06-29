@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { type SubmitEvent } from 'react'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
+import Gardenbar from './components/gardenbar/Gardenbar'
 import Stage from './components/stage/Stage'
 import { type Plant } from './types/plant'
 import { type Garden } from './types/garden'
@@ -12,6 +13,8 @@ import './App.css'
 export function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
   const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [gardens, setGardens] = useState<Garden[]>([]);
+  const [selectedGardenIds, setSelectedGardenIds] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -128,6 +131,13 @@ export function App() {
         <Stage 
           allPlants = {plants}
           selectedIds={selectedIds}/>
+        <Gardenbar 
+          gardens={gardens}
+          selectedIds={selectedIds}
+          onToggle={handleToggleSelect}
+          onClear={clearSelectedIds}
+          onDoubleClickGarden={(garden) => setDetailsGarden(garden)}
+          onAddGarden={() => setIsGardenModal(true)} />
       </div>
       {error && <div className="status-bar error">{error}</div>}
     </div>
