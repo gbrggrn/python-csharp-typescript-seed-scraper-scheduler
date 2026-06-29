@@ -7,7 +7,6 @@
 
 .workspace {
   display: flex;
-  flex: 1;
   background: var(--bg);
 }
 
