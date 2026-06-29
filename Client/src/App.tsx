@@ -103,7 +103,6 @@ export function App() {
           gardens={gardens}
           selectedIds={selectedIds}
           onToggle={handleToggleSelect}
-          onClear={clearSelectedIds}
           onDoubleClickGarden={(garden) => setDetailsGarden(garden)}
           onAddGarden={() => setIsGardenModal(true)} />
 
