@@ -60,7 +60,7 @@ const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant, on
                 ))}
 
                 {filteredPlants.length === 0 && (
-                    <div className="no-results">No plants match "{searchTerm}"</div>
+                    <div className="no-results">Inga grönsaker matchar: "{searchTerm}"</div>
                 )}
             </div>
         </aside>
