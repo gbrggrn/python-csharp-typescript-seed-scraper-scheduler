@@ -22,16 +22,6 @@ const Sidebar = ({plants, selectedIds, onToggle, onClear, onDoubleClickPlant, on
 
     return (
         <aside className="sidebar">
-            <div className="add-garden-btn">
-                <button
-                    onClick={() => onAddGarden(true)}
-                    >
-                        Lägg till trädgård
-                    </button>
-            </div>
-            <div className="garden-list">
-
-            </div>
             <div className="clear-btn">
                 <button
                     onClick={() => onClear()}
