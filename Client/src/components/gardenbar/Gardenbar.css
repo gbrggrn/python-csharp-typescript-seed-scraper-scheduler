@@ -1,0 +1,104 @@
+.gardenbar {
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--text);
+    position: sticky;
+    top: 0;
+}
+
+.search-box {
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.search-box input {
+    width: 100%;
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box input::placeholder {
+    color: var(--text);
+    opacity: 1;
+}
+
+.search-box input::focus {
+    border-color: #795151;
+    box-shadow: 0 0 0 3px #795151;
+}
+
+.clear-btn, .add-garden-btn {
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.clear-btn button, .add-garden-btn button {
+    cursor: pointer;
+    padding: 8px 12px;
+    width: 100%;
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 2px 4px var(--border);
+}
+
+.clear-btn button:hover, .add-garden-btn button:hover {
+    background-color: #cfcaba;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clear-btn button:active, .add-garden-btn button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.clear-btn button:focus-visible, .add-garden-btn button:active {
+    outline: 2px solid;
+    outline-offset: 2px;
+}
+
+.garden-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    scrollbar-color: #615e4c var(--bg);
+}
+
+.list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 15px;
+    background: transparent;
+    border: none;
+    color: #cccccc;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #333;
+    user-select: none;
+    outline:none;
+}
+
+.list-item:hover {
+    background-color: #a5a082;
+    color: #ffffff;
+}
+
+.list-item.is-selected {
+    background-color: #615e4c;
+    color: white;
+    outline: 1px solid var(--border);
+}
