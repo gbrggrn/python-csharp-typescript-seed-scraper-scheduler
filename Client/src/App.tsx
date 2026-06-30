@@ -168,8 +168,8 @@ export function App() {
                 <p>Trädgårdens namn: { detailsGarden.name }</p>
                 <p>Latitud: { detailsGarden.latitude }</p>
                 <p>Longitud: { detailsGarden.longitude }</p>
-                <p>Avg. sista frost: </p>
-                <p>Avg. första frost: </p>
+                <p>Genomsnittlig sista frost: </p>
+                <p>Genomsnittlig första frost: </p>
                 <h4>Sammanfattning av förutsättningar</h4>
                 <p>Förutsättningar...</p>
               </div>
