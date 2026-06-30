@@ -49,6 +49,7 @@ export function App() {
         }
 
         const gardens = await fetchGardens();
+        console.log()
         if (Array.isArray(gardens)) {
           setGardens(gardens);
         }
