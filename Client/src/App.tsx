@@ -34,7 +34,7 @@ export function App() {
       if (prev.includes(id)) {
         return prev.filter(rid => rid !== id);
       } else {
-        return [...prev, id];
+        return [id];
       }
     });
   }
