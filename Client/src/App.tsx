@@ -162,7 +162,7 @@ export function App() {
             <div className="modal-window" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
                 <h3>{ detailsGarden.name }</h3>
-                <button className="modal-close" onClick={() => setDetailsPlant(null)}>X</button>
+                <button className="modal-close" onClick={() => setDetailsGarden(null)}>X</button>
               </div>
               <div className="modal-body">
                 <p>Trädgårdens namn: { detailsGarden.name }</p>
