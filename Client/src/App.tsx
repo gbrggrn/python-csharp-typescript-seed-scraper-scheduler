@@ -156,6 +156,22 @@ export function App() {
             </div>
           </div>
         )}
+
+        {detailsGarden && (
+          <div className="modal-overlay" onClick={() => setDetailsPlant(null)}>
+            <div className="modal-window" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3>{ detailsGarden.name }</h3>
+                <button className="modal-close" onClick={() => setDetailsPlant(null)}>X</button>
+              </div>
+              <div className="modal-body">
+                <p>Trädgårdens namn: { detailsGarden.name }</p>
+                <p>Latitud: { detailsGarden.latitude }</p>
+                <p>Longitud: { detailsGarden.longitude }</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {error && <div className="status-bar error">{error}</div>}
     </div>
