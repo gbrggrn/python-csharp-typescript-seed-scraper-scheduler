@@ -8,7 +8,7 @@ namespace SeedScheduler.Api.Controllers;
 [Route("api/[controller]")]
 public class GardenController : ControllerBase
 {
-        private readonly GardenService _gardenService;
+    private readonly GardenService _gardenService;
 
     public GardenController(GardenService gardenService)
     {
@@ -18,7 +18,7 @@ public class GardenController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> ReadAll()
     {
-        var response = _gardenService.ReadAllAsync();
+        var response = await _gardenService.ReadAllAsync();
 
         if (response == null)
             return NotFound("Could not find any Gardens.");
@@ -61,5 +61,4 @@ public class GardenController : ControllerBase
         
         return Ok();
     }
-
 }
