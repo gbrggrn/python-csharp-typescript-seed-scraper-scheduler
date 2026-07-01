@@ -172,6 +172,7 @@ public class GardenService
             garden.AverageFirstFrostDay = (int)firstFallFrostDays.Average();
     }
 
+    /*
     public async Task<bool> GetGenWeatherData(int stationId)
     {
         
@@ -180,5 +181,5 @@ public class GardenService
     public async Task<bool> GenerateWeatherSummary(JsonObject weatherPayload)
     {
         
-    }
+    } */
 }
