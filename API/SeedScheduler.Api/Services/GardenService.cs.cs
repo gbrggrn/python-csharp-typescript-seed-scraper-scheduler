@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.Json.Nodes;
+using Microsoft.EntityFrameworkCore;
 using SeedScheduler.Api.Data;
 using SeedScheduler.Api.Models;
 using SeedScheduler.Api.Shared.DTOs;
@@ -72,5 +73,30 @@ public class GardenService
         await _dbContext.SaveChangesAsync();
 
         return true;
+    }
+
+    public async Task<int> GetClosestStationId(float targetLat, float targetLon)
+    {
+        
+    }
+
+    public async Task<bool> GetFrostData(int stationId)
+    {
+        
+    }
+
+    public CalculateAvgFrost(int[] mintemps)
+    {
+        
+    }
+
+    public async Task<bool> GetGenWeatherData(int stationId)
+    {
+        
+    }
+
+    public async Task<bool> GenerateWeatherSummary(JsonObject weatherPayload)
+    {
+        
     }
 }
