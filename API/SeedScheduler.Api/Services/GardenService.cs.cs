@@ -130,47 +130,46 @@ public class GardenService
         return minTempArray;
     }
 
-    public async Task<bool> CalculateAvgFrost(JsonArray minTempArray, Garden garden)
+    public void CalculateAvgFrost(JsonArray minTempArray, Garden garden)
     {
-        List<int> historicalSpringFrostDays = new List<int>();
-        List<int> historicalFallFrostDays = new List<int>();
-
-        foreach (var tempNode in minTempArray)
-        {
-            if (tempNode == null)
-                continue;
-
-            float temp = float.Parse(tempNode["value"]?.GetValue<string>() ?? "0");
-            long unixMillis = tempNode["date"]?.GetValue<long>() ?? 0;
-
-            DateTime calendarDate = DateTimeOffset.FromUnixTimeMilliseconds(unixMillis).DateTime;
-
-            int dayOfYear = calendarDate.DayOfYear;
-            int year = calendarDate.Year;
-
-            if (dayOfYear < 180 && temp > 0)
+        var recordsByYear = minTempArray
+            .Where(node => node != null)
+            .Select(node =>
             {
-                historicalSpringFrostDays.Add(dayOfYear - 1);
-                continue;
-            }
-            if (dayOfYear > 180 && temp < 0)
-                historicalFallFrostDays.Add(dayOfYear);
+                float temp = float.Parse(node["value"]?.GetValue<string>() ?? "0");
+                long unixMillis = node["date"]?.GetValue<long>() ?? 0;
+                var date = DateTimeOffset.FromUnixTimeMilliseconds(unixMillis).DateTime;
+                return new { Date = date, Temp = temp};
+            })
+            .GroupBy(r => r.Date.Year);
+
+        List<int> lastSpringFrostDays = [];
+        List<int> firstFallFrostDays = [];
+
+        foreach (var yearGroup in recordsByYear)
+        {
+            var lastSpringFrost = yearGroup
+                .Where(r => r.Date.DayOfYear < 180 && r.Temp <= 0)
+                .OrderByDescending(r => r.Date.DayOfYear)
+                .FirstOrDefault();
+
+            var firstFallFrost = yearGroup
+                .Where(r => r.Date.DayOfYear > 180 && r.Temp >= 0)
+                .OrderByDescending(r => r.Date.DayOfYear)
+                .FirstOrDefault();
+
+            if (lastSpringFrost != null)
+                lastSpringFrostDays.Add(lastSpringFrost.Date.DayOfYear);
+
+            if (firstFallFrost != null)
+                firstFallFrostDays.Add(firstFallFrost.Date.DayOfYear);
         }
 
-        int avgHistoricalSpringFrost = (int)historicalSpringFrostDays.Average();
-        int avgHistoricalFallFrost = (int)historicalFallFrostDays.Average();
+        if (lastSpringFrostDays.Any())
+            garden.AverageLastFrostDay = (int)lastSpringFrostDays.Average();
 
-        var existingGarden = await _gardens.FindAsync(garden.Id);
-        if (existingGarden == null)
-            return false;
-
-        existingGarden.AverageLastFrostDay = avgHistoricalSpringFrost;
-        existingGarden.AverageFirstFrostDay = avgHistoricalFallFrost;
-
-        _gardens.Update(existingGarden);
-        await _dbContext.SaveChangesAsync();
-
-        return true;
+        if (firstFallFrostDays.Any())
+            garden.AverageFirstFrostDay = (int)firstFallFrostDays.Average();
     }
 
     public async Task<bool> GetGenWeatherData(int stationId)
