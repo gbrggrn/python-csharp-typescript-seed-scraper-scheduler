@@ -105,7 +105,7 @@ public class GardenService
 
             float dLat = targetLat - stationLat;
             float dLon = targetLon - stationLon;
-            float distanceSquared = (dLat * dLat) + (dLon + dLon);
+            float distanceSquared = (dLat * dLat) + (dLon * dLon);
 
             if (distanceSquared < shortestDistance)
             {
