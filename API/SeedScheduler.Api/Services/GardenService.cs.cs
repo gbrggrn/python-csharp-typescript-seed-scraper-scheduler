@@ -125,7 +125,7 @@ public class GardenService
         var url = $"https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/19/station/{stationId}.json";
         var jsonRoot = await client.GetFromJsonAsync<JsonNode>(url);
 
-        var minTempArray = (JsonArray)jsonRoot ?? new JsonArray();
+        var minTempArray = jsonRoot?["value"]?.AsArray() ?? new JsonArray();
 
         return minTempArray;
     }
