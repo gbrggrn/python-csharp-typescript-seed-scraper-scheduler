@@ -77,7 +77,44 @@ public class GardenService
 
     public async Task<int> GetClosestStationId(float targetLat, float targetLon)
     {
-        
+        using var client = new HttpClient();
+
+        client.DefaultRequestHeaders.Add("User-Agent", "SeedSchedulerApp");
+
+        var url = "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1.json";
+        var jsonRoot = await client.GetFromJsonAsync<JsonNode>(url);
+
+        var stationArray = jsonRoot?["station"]?.AsArray();
+
+        if (stationArray == null)
+            throw new Exception("Failed to parse SMHI stations");
+
+        int closestStationId = 0;
+        float shortestDistance = float.MaxValue;
+
+        foreach (var node in stationArray)
+        {
+            if (node == null)
+                continue;
+            
+            if (node["active"]?.GetValue<bool>() == false)
+                continue;
+
+            float stationLat = node["latitude"]?.GetValue<float>() ?? 0;
+            float stationLon = node["longitude"]?.GetValue<float>() ?? 0;
+
+            float dLat = targetLat - stationLat;
+            float dLon = targetLon - stationLon;
+            float distanceSquared = (dLat * dLat) + (dLon + dLon);
+
+            if (distanceSquared < shortestDistance)
+            {
+                shortestDistance = distanceSquared;
+                closestStationId = node["id"]?.GetValue<int>() ?? 0;
+            }
+        }
+
+        return closestStationId;
     }
 
     public async Task<bool> GetFrostData(int stationId)
