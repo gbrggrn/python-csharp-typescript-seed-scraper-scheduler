@@ -122,7 +122,7 @@ public class GardenService
         using var client = new HttpClient();
         client.DefaultRequestHeaders.Add("User-Agent", "SeedSchedulerApp");
 
-        var url = "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/19/station/{stationId}.json";
+        var url = $"https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/19/station/{stationId}.json";
         var jsonRoot = await client.GetFromJsonAsync<JsonNode>(url);
 
         var minTempArray = (JsonArray)jsonRoot ?? new JsonArray();
@@ -169,7 +169,7 @@ public class GardenService
 
         _gardens.Update(existingGarden);
         await _dbContext.SaveChangesAsync();
-        
+
         return true;
     }
 
