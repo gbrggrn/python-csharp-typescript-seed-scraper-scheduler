@@ -117,14 +117,60 @@ public class GardenService
         return closestStationId;
     }
 
-    public async Task<bool> GetFrostData(int stationId)
+    public async Task<JsonArray> GetFrostData(int stationId)
     {
-        
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("User-Agent", "SeedSchedulerApp");
+
+        var url = "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/19/station/{stationId}.json";
+        var jsonRoot = await client.GetFromJsonAsync<JsonNode>(url);
+
+        var minTempArray = (JsonArray)jsonRoot ?? new JsonArray();
+
+        return minTempArray;
     }
 
-    public CalculateAvgFrost(int[] mintemps)
+    public async Task<bool> CalculateAvgFrost(JsonArray minTempArray, Garden garden)
     {
+        List<int> historicalSpringFrostDays = new List<int>();
+        List<int> historicalFallFrostDays = new List<int>();
+
+        foreach (var tempNode in minTempArray)
+        {
+            if (tempNode == null)
+                continue;
+
+            float temp = float.Parse(tempNode["value"]?.GetValue<string>() ?? "0");
+            long unixMillis = tempNode["date"]?.GetValue<long>() ?? 0;
+
+            DateTime calendarDate = DateTimeOffset.FromUnixTimeMilliseconds(unixMillis).DateTime;
+
+            int dayOfYear = calendarDate.DayOfYear;
+            int year = calendarDate.Year;
+
+            if (dayOfYear < 180 && temp > 0)
+            {
+                historicalSpringFrostDays.Add(dayOfYear - 1);
+                continue;
+            }
+            if (dayOfYear > 180 && temp < 0)
+                historicalFallFrostDays.Add(dayOfYear);
+        }
+
+        int avgHistoricalSpringFrost = (int)historicalSpringFrostDays.Average();
+        int avgHistoricalFallFrost = (int)historicalFallFrostDays.Average();
+
+        var existingGarden = await _gardens.FindAsync(garden.Id);
+        if (existingGarden == null)
+            return false;
+
+        existingGarden.AverageLastFrostDay = avgHistoricalSpringFrost;
+        existingGarden.AverageFirstFrostDay = avgHistoricalFallFrost;
+
+        _gardens.Update(existingGarden);
+        await _dbContext.SaveChangesAsync();
         
+        return true;
     }
 
     public async Task<bool> GetGenWeatherData(int stationId)
