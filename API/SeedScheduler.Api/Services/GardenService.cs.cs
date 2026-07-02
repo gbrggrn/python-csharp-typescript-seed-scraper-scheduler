@@ -140,8 +140,8 @@ public class GardenService
             .Where(node => node != null)
             .Select(node =>
             {
-                float temp = float.Parse(node["value"]?.GetValue<string>() ?? "0");
-                long unixMillis = node["date"]?.GetValue<long>() ?? 0;
+                float temp = float.Parse(node?["value"]?.GetValue<string>() ?? "0");
+                long unixMillis = node?["date"]?.GetValue<long>() ?? 0;
                 var date = DateTimeOffset.FromUnixTimeMilliseconds(unixMillis).DateTime;
                 return new { Date = date, Temp = temp};
             })
