@@ -36,3 +36,27 @@ export async function postGarden(name: string, lat: string, lon: string): Promis
 
     return false;
 }
+
+export async function deleteGarden(id: number): Promise<boolean> {
+    const payload = {
+        Id: id
+    }
+
+    try {
+        const response = await fetch (API_URL, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            return true;
+        }
+    } catch (error) {
+        console.error("Failed to delete garden...", error)
+        return false;
+    }
+
+    console.error("Failed to delete garden...", "Unknown error...")
+    return false;
+}
