@@ -39,6 +39,10 @@ public class GardenService
             Latitude = dto.Latitude
         };
 
+        int closestStationId = await GetClosestStationId(newGarden.Latitude, newGarden.Longitude);
+        JsonArray minTempArray = await GetFrostData(closestStationId);
+        CalculateAvgFrost(minTempArray, newGarden);
+
         await _gardens.AddAsync(newGarden);
         await _dbContext.SaveChangesAsync();
     }
