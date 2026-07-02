@@ -9,6 +9,7 @@ import { type Garden } from './types/garden'
 import { fetchPlants } from './services/plantService'
 import { fetchGardens } from './services/gardenService'
 import { postGarden } from './services/gardenService'
+import { deleteGarden } from './services/gardenService'
 import './App.css'
 
 export function App() {
@@ -79,6 +80,16 @@ export function App() {
       setIsGardenModal(false)
     } else {
       setIsGardenModal(true)
+    }
+  }
+
+  async function deleteThisGarden(id: number) {
+    var response = await deleteGarden(id);
+    if (response) {
+      console.log("Succesfully deleted garden. Id: ", { id })
+      setDetailsGarden(null)
+    } else {
+      console.error("Unable to remove garden. Id: ", { id })
     }
   }
 
@@ -163,13 +174,14 @@ export function App() {
               <div className="modal-header">
                 <h3>{ detailsGarden.name }</h3>
                 <button className="modal-close" onClick={() => setDetailsGarden(null)}>X</button>
+                <button className="delete-btn" onClick={() => deleteThisGarden(detailsGarden.id)}/>
               </div>
               <div className="modal-body">
                 <p>Trädgårdens namn: { detailsGarden.name }</p>
                 <p>Latitud: { detailsGarden.latitude }</p>
                 <p>Longitud: { detailsGarden.longitude }</p>
-                <p>Genomsnittlig sista frost: </p>
-                <p>Genomsnittlig första frost: </p>
+                <p>Genomsnittlig sista dag för frost: { detailsGarden.averageLastFrostDay } </p>
+                <p>Genomsnittlig första dag för frost: { detailsGarden.averageFirstFrostDay }</p>
                 <h4>Sammanfattning av förutsättningar</h4>
                 <p>Förutsättningar...</p>
               </div>
