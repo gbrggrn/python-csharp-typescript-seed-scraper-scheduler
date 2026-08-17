@@ -1,5 +1,7 @@
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.SignalR;
 using SeedScheduler.Api.Models;
@@ -19,15 +21,41 @@ public class LLMClient
         };
     }
 
-    public async string GetGeneralConditions(Garden garden)
+    public async Task<string> GetGeneralConditions(Garden garden)
     {
-        string prompt = $"Restrictions: 1. Maximum 200 words 2. No filler content. | Instructions: Generate a summary of the general conditions for growing vegetables in a garden based on provided data. | Data: name = {garden.Name}, avarage first day of frost = {garden.AverageFirstFrostDay}, avarage last day of frost = {garden.AverageLastFrostDay}, longitude = {garden.Longitude}, latitude = {garden.Latitude}";
+        var prompt = $"Garden data: name = {garden.Name}, avarage first day of frost = {garden.AverageFirstFrostDay}, avarage last day of frost = {garden.AverageLastFrostDay}, longitude = {garden.Longitude}, latitude = {garden.Latitude}";
+        var model = "llama3.2";
+        var system = @"You are a gardening expert and your job is to provide a summary of the general conditions for growing vegetables in a garden based on the data in the prompt. Maximum 200 words and no filler content. Be terse.";
 
+        var body = new
+        {
+            model = model,
+            prompt = prompt,
+            system = system,
+            stream = false
+        };
+
+        var requestBody = JsonSerializer.Serialize(body);
+        var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
         
+        var response = await _httpClient.PostAsync("api/generate", content);
+        response.EnsureSuccessStatusCode();
+        var result = await response.Content.ReadAsStringAsync();
+
+        using var doc = JsonDocument.Parse(result);
+        if (doc.RootElement.TryGetProperty("response", out JsonElement responseProp))
+        {
+            string responseValue = responseProp.GetString();
+            return responseValue;
+        }
+        else
+        {
+            return "fail";
+        }
     }
 
-    public async string GetWeatherSummary(JsonObject weatherPackage)
+    public async Task<string> GetWeatherSummary(JsonObject weatherPackage)
     {
-        
+        return "";
     }
 }
