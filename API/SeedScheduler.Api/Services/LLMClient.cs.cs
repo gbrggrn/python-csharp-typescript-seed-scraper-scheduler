@@ -1,3 +1,7 @@
+using System.Reflection.Metadata.Ecma335;
+using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.SignalR;
+
 namespace SeedScheduler.Api.Services;
 
 public class LLMClient
@@ -13,5 +17,13 @@ public class LLMClient
         };
     }
 
-    
+    public async string GetGeneralConditions(float lat, float lon)
+    {
+        
+    }
+
+    public async string GetWeatherSummary(JsonObject weatherPackage)
+    {
+        
+    }
 }
